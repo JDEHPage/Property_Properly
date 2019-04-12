@@ -8,15 +8,19 @@ public class BookableItem {
     private String name;
     private int capacity;
     private int rate;
-    private List<BookingItemType> bookingItemTypes;
-    boolean clean;
+    private List<PaymentOption> paymentOptions;
+    private List<Amenity> amenities;
+    private BookingItemType bookingItemType;
+    private Boolean clean;
 
-    public BookableItem(String name, int capacity, int rate, boolean clean) {
+    public BookableItem(String name, int capacity, int rate, BookingItemType bookingItemType, Boolean clean) {
         this.name = name;
         this.capacity = capacity;
         this.rate = rate;
-        this.bookingItemTypes = new ArrayList<>();
+        this.bookingItemType = bookingItemType;
         this.clean = clean;
+        this.amenities = new ArrayList<>();
+        this.paymentOptions = new ArrayList<>();
     }
 
     public String getName() {
@@ -43,19 +47,35 @@ public class BookableItem {
         this.rate = rate;
     }
 
-    public List<BookingItemType> getBookingItemTypes() {
-        return bookingItemTypes;
+    public List<PaymentOption> getPaymentOptions() {
+        return paymentOptions;
     }
 
-    public void setBookingItemTypes(List<BookingItemType> bookingItemTypes) {
-        this.bookingItemTypes = bookingItemTypes;
+    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
+        this.paymentOptions = paymentOptions;
     }
 
-    public boolean isClean() {
+    public List<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(List<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
+    public BookingItemType getBookingItemType() {
+        return bookingItemType;
+    }
+
+    public void setBookingItemType(BookingItemType bookingItemType) {
+        this.bookingItemType = bookingItemType;
+    }
+
+    public Boolean getClean() {
         return clean;
     }
 
-    public void setClean(boolean clean) {
+    public void setClean(Boolean clean) {
         this.clean = clean;
     }
 }
