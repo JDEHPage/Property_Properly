@@ -1,4 +1,4 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-public class BookingItemTypes {
+public class BookingItemType {
 }

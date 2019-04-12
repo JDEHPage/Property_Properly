@@ -3,15 +3,15 @@ package com.propertyproperly.codeclan.PropertyProperlyService.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookableItems {
+public class BookableItem {
 
     private String name;
     private int capacity;
     private int rate;
-    private List<BookingItemTypes> bookingItemTypes;
+    private List<BookingItemType> bookingItemTypes;
     boolean clean;
 
-    public BookableItems(String name, int capacity, int rate, boolean clean) {
+    public BookableItem(String name, int capacity, int rate, boolean clean) {
         this.name = name;
         this.capacity = capacity;
         this.rate = rate;
@@ -43,11 +43,11 @@ public class BookableItems {
         this.rate = rate;
     }
 
-    public List<BookingItemTypes> getBookingItemTypes() {
+    public List<BookingItemType> getBookingItemTypes() {
         return bookingItemTypes;
     }
 
-    public void setBookingItemTypes(List<BookingItemTypes> bookingItemTypes) {
+    public void setBookingItemTypes(List<BookingItemType> bookingItemTypes) {
         this.bookingItemTypes = bookingItemTypes;
     }
 

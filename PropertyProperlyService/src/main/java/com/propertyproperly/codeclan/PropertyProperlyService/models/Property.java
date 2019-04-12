@@ -6,7 +6,7 @@ import java.util.List;
 public class Property {
 
     private String name;
-    private List<BookableItems> bookableItems;
+    private List<BookableItem> bookableItems;
 
     public Property(String name) {
         this.name = name;
@@ -21,15 +21,15 @@ public class Property {
         this.name = name;
     }
 
-    public List<BookableItems> getBookableItems() {
+    public List<BookableItem> getBookableItems() {
         return bookableItems;
     }
 
-    public void setBookableItems(List<BookableItems> bookableItems) {
+    public void setBookableItems(List<BookableItem> bookableItems) {
         this.bookableItems = bookableItems;
     }
 
-    public void addBooking(BookableItems bookableItems){
-        this.bookableItems.add(bookableItems);
+    public void addBooking(BookableItem bookableItem){
+        this.bookableItems.add(bookableItem);
     }
 }
