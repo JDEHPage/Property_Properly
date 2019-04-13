@@ -1,11 +1,32 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public abstract class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "startdate")
     private String startDate;
+
+    @Column(name = "enddate")
     private String endDate;
+
+
+
+
+
     private BookableItem bookableItem;
+
+    @Column(name = "notes")
     private String notes;
+
+    @Column(name = "ongoing")
     private Boolean ongoing;
 
     public Booking(String startDate, String endDate, BookableItem bookableItem, Boolean ongoing) {

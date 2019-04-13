@@ -1,6 +1,14 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class MaintenanceBooking extends Booking {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String type;
 
