@@ -14,6 +14,9 @@ public class Customer {
         this.mobileNo = mobileNo;
     }
 
+    public Customer() {
+    }
+
     public String getName() {
         return name;
     }

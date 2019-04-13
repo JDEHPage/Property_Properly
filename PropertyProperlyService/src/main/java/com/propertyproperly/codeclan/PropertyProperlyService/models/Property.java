@@ -13,6 +13,9 @@ public class Property {
         this.bookableItems = new ArrayList<>();
     }
 
+    public Property() {
+    }
+
     public String getName() {
         return name;
     }

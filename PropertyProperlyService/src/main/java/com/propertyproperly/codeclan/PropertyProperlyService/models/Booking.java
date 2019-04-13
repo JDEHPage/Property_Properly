@@ -15,6 +15,9 @@ public abstract class Booking {
         this.ongoing = ongoing;
     }
 
+    public Booking() {
+    }
+
     public String getStartDate() {
         return startDate;
     }

@@ -10,6 +10,9 @@ public class Amenity {
         this.description = description;
     }
 
+    public Amenity() {
+    }
+
     public String getName() {
         return name;
     }

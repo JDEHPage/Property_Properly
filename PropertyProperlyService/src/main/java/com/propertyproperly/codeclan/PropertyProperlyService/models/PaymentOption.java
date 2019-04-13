@@ -10,6 +10,9 @@ public class PaymentOption {
         this.description = description;
     }
 
+    public PaymentOption() {
+    }
+
     public String getName() {
         return name;
     }

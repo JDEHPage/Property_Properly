@@ -10,6 +10,8 @@ public class CustomerBooking extends Booking {
         this.paid = paid;
     }
 
+
+
     public Boolean getPaid() {
         return paid;
     }

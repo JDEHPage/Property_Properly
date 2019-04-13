@@ -43,6 +43,9 @@ public class BookableItem {
         this.paymentOption = new ArrayList<>();
     }
 
+    public BookableItem() {
+    }
+
     public String getName() {
         return name;
     }
