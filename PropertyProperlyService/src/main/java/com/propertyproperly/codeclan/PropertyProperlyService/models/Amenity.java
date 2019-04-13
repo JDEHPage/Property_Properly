@@ -1,10 +1,13 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "amenities")
 public class Amenity {
 
     @Id
@@ -16,6 +19,15 @@ public class Amenity {
 
     @Column(name = "description")
     private String description;
+
+    @JsonIgnoreProperties("amenities")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
+    )
+    List<BookableItem> bookableItems;
 
     public Amenity(String name, String description) {
         this.name = name;
@@ -47,5 +59,13 @@ public class Amenity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<BookableItem> getBookableItems() {
+        return bookableItems;
+    }
+
+    public void setBookableItems(List<BookableItem> bookableItems) {
+        this.bookableItems = bookableItems;
     }
 }

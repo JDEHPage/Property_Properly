@@ -1,28 +1,51 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "customers")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "mobileno")
     private int mobileNo;
 
-    public Customer(String name, String address, String email, int mobileNo) {
+//    @JsonIgnoreProperties("bookings")
+    @JsonIgnore
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<CustomerBooking> customerBookings;
+
+    public Customer(String name) {
         this.name = name;
-        this.address = address;
-        this.email = email;
-        this.mobileNo = mobileNo;
     }
 
     public Customer() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -55,5 +78,13 @@ public class Customer {
 
     public void setMobileNo(int mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public List<CustomerBooking> getCustomerBookings() {
+        return customerBookings;
+    }
+
+    public void setCustomerBookings(List<CustomerBooking> customerBookings) {
+        this.customerBookings = customerBookings;
     }
 }

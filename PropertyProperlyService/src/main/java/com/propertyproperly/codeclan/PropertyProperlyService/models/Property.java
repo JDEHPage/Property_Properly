@@ -1,26 +1,39 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "properties")
 public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
-    private List<BookableItem> bookableItems;
+
+    @JsonIgnore
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
+    private List<BookingItemType> bookingItemTypes;
 
     public Property(String name) {
         this.name = name;
-        this.bookableItems = new ArrayList<>();
+        this.bookingItemTypes = new ArrayList<BookingItemType>();
     }
 
-    public Property() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,15 +44,11 @@ public class Property {
         this.name = name;
     }
 
-    public List<BookableItem> getBookableItems() {
-        return bookableItems;
+    public List<BookingItemType> getBookingItemTypes() {
+        return bookingItemTypes;
     }
 
-    public void setBookableItems(List<BookableItem> bookableItems) {
-        this.bookableItems = bookableItems;
-    }
-
-    public void addBooking(BookableItem bookableItem){
-        this.bookableItems.add(bookableItem);
+    public void setBookingItemTypes(List<BookingItemType> bookingItemTypes) {
+        this.bookingItemTypes = bookingItemTypes;
     }
 }

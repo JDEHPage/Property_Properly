@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+//@DiscriminatorColumn(name="BOOK_TYPE")
+@Table(name="BOOKINGS")
 public abstract class Booking {
 
     @Id
@@ -36,8 +41,8 @@ public abstract class Booking {
     public Booking(String startDate, String endDate, List<BookableItem> bookableItems, Boolean ongoing) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.bookableItems = bookableItems;
         this.ongoing = ongoing;
+        this.bookableItems = new ArrayList<BookableItem>();
     }
 
     public Booking() {

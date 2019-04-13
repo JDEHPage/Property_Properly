@@ -14,7 +14,7 @@ public class BookableItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "name")
     private String name;
     
@@ -23,11 +23,25 @@ public class BookableItem {
     
     @Column(name = "rate")
     private int rate;
-    
-    @Column(name = "paymentOptions")
-    private List<PaymentOption> paymentOption;
-    
-    @Column(name = "amenities")
+
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "bookableitems_paymentoptions",
+            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "paymentoption_id", nullable = false, updatable = false)}
+    )
+    private List<PaymentOption> paymentOptions;
+
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "bookableitems_amenities",
+            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)}
+    )
     private List<Amenity> amenities;
 
     @JsonIgnoreProperties("bookableItems")
@@ -42,7 +56,7 @@ public class BookableItem {
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
-            name = "item_bookingd",
+            name = "bookableitems_bookings",
             joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
     )
@@ -54,6 +68,9 @@ public class BookableItem {
         this.rate = rate;
         this.bookingItemType = bookingItemType;
         this.clean = clean;
+        this.bookings = new ArrayList<Booking>();
+        this.amenities = new ArrayList<Amenity>();
+        this.paymentOptions = new ArrayList<PaymentOption>();
     }
 
     public BookableItem() {
@@ -91,12 +108,12 @@ public class BookableItem {
         this.rate = rate;
     }
 
-    public List<PaymentOption> getPaymentOption() {
-        return paymentOption;
+    public List<PaymentOption> getPaymentOptions() {
+        return paymentOptions;
     }
 
-    public void setPaymentOption(List<PaymentOption> paymentOption) {
-        this.paymentOption = paymentOption;
+    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
+        this.paymentOptions = paymentOptions;
     }
 
     public List<Amenity> getAmenities() {

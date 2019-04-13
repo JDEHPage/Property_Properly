@@ -1,19 +1,20 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+//@DiscriminatorValue("M")
+@Table(name="MAINTENANCEBOOKINGS")
 public class MaintenanceBooking extends Booking {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column
     private String type;
 
-    public MaintenanceBooking(String startDate, String endDate, BookableItem bookableItem, Boolean ongoing, String type) {
-        super(startDate, endDate, bookableItem, ongoing);
+    public MaintenanceBooking(String startDate, String endDate, List<BookableItem> bookableItems, Boolean ongoing, String type) {
+        super(startDate, endDate, bookableItems, ongoing);
         this.type = type;
     }
 

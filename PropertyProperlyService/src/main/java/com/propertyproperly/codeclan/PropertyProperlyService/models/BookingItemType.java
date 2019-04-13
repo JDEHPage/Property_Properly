@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,6 +16,11 @@ public class BookingItemType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties("bookingItemTypes")
+    @ManyToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    private List<Property> properties;
+
     @Column(name = "name")
     private String name;
 
@@ -25,9 +31,7 @@ public class BookingItemType {
 
     public BookingItemType(String name) {
         this.name = name;
-    }
-
-    public BookingItemType() {
+        this.bookableItems = new ArrayList<BookableItem>();
     }
 
     public Long getId() {
@@ -36,6 +40,14 @@ public class BookingItemType {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 
     public String getName() {
