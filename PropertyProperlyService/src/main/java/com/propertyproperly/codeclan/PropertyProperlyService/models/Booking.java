@@ -1,9 +1,10 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
+import java.util.List;
 
 public abstract class Booking {
 
@@ -17,11 +18,14 @@ public abstract class Booking {
     @Column(name = "enddate")
     private String endDate;
 
-
-
-
-
-    private BookableItem bookableItem;
+    @JsonIgnoreProperties("bookings")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
+    )
+    private List<BookableItem> bookableItems;
 
     @Column(name = "notes")
     private String notes;
@@ -29,14 +33,22 @@ public abstract class Booking {
     @Column(name = "ongoing")
     private Boolean ongoing;
 
-    public Booking(String startDate, String endDate, BookableItem bookableItem, Boolean ongoing) {
+    public Booking(String startDate, String endDate, List<BookableItem> bookableItems, Boolean ongoing) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.bookableItem = bookableItem;
+        this.bookableItems = bookableItems;
         this.ongoing = ongoing;
     }
 
     public Booking() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStartDate() {
@@ -55,12 +67,12 @@ public abstract class Booking {
         this.endDate = endDate;
     }
 
-    public BookableItem getBookableItem() {
-        return bookableItem;
+    public List<BookableItem> getBookableItems() {
+        return bookableItems;
     }
 
-    public void setBookableItem(BookableItem bookableItem) {
-        this.bookableItem = bookableItem;
+    public void setBookableItems(List<BookableItem> bookableItems) {
+        this.bookableItems = bookableItems;
     }
 
     public String getNotes() {

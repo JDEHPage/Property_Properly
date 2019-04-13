@@ -23,12 +23,19 @@ public class BookingItemType {
     @OneToMany(mappedBy = "bookingitemtype", fetch = FetchType.LAZY)
     private List<BookableItem> bookableItems;
 
-    public BookingItemType(String name, List<BookableItem> bookableItems) {
+    public BookingItemType(String name) {
         this.name = name;
-        this.bookableItems = bookableItems;
     }
 
     public BookingItemType() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

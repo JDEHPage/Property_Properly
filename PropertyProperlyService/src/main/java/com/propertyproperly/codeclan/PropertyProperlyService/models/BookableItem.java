@@ -1,6 +1,7 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,17 +38,33 @@ public class BookableItem {
     @Column(name = "clean")
     private Boolean clean;
 
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "item_bookingd",
+            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
+    )
+    private List<Booking> bookings;
+
     public BookableItem(String name, int capacity, int rate, BookingItemType bookingItemType, Boolean clean) {
         this.name = name;
         this.capacity = capacity;
         this.rate = rate;
         this.bookingItemType = bookingItemType;
         this.clean = clean;
-        this.amenities = new ArrayList<>();
-        this.paymentOption = new ArrayList<>();
     }
 
     public BookableItem() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,11 +91,11 @@ public class BookableItem {
         this.rate = rate;
     }
 
-    public List<PaymentOption> getpaymentOption() {
+    public List<PaymentOption> getPaymentOption() {
         return paymentOption;
     }
 
-    public void setpaymentOption(List<PaymentOption> paymentOption) {
+    public void setPaymentOption(List<PaymentOption> paymentOption) {
         this.paymentOption = paymentOption;
     }
 
@@ -104,5 +121,13 @@ public class BookableItem {
 
     public void setClean(Boolean clean) {
         this.clean = clean;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
