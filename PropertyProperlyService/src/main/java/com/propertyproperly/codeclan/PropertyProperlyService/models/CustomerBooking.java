@@ -5,12 +5,14 @@ public class CustomerBooking extends Booking {
     private Boolean paid;
     private Customer customer;
 
-    public CustomerBooking(String startDate, String endDate, BookableItem bookableItem, Boolean ongoing, Boolean paid) {
+    public CustomerBooking(String startDate, String endDate, BookableItem bookableItem, Boolean ongoing, Boolean paid, Customer customer) {
         super(startDate, endDate, bookableItem, ongoing);
         this.paid = paid;
+        this.customer = customer;
     }
 
-
+    public CustomerBooking() {
+    }
 
     public Boolean getPaid() {
         return paid;

@@ -9,6 +9,9 @@ public class MaintenanceBooking extends Booking {
         this.type = type;
     }
 
+    public MaintenanceBooking() {
+    }
+
     public String getType() {
         return type;
     }

@@ -1,5 +1,7 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +28,13 @@ public class BookableItem {
     
     @Column(name = "amenities")
     private List<Amenity> amenities;
-    
-    
+
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToOne
+    @JoinColumn(name = "bookingitemtype_id", nullable = false)
     private BookingItemType bookingItemType;
-    
-    
+
+    @Column(name = "clean")
     private Boolean clean;
 
     public BookableItem(String name, int capacity, int rate, BookingItemType bookingItemType, Boolean clean) {
