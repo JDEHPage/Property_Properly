@@ -23,14 +23,14 @@ public abstract class Booking {
     @Column(name = "enddate")
     private String endDate;
 
-//    @JsonIgnoreProperties("bookings")
-//    @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    @JoinTable(
-//            joinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
-//    )
-//    private List<Room> bookableItems;
+    @JsonIgnoreProperties("bookings")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "room_id", nullable = false, updatable = false)}
+    )
+    private List<Room> rooms;
 
     @Column(name = "notes")
     private String notes;
@@ -38,11 +38,11 @@ public abstract class Booking {
     @Column(name = "ongoing")
     private Boolean ongoing;
 
-    public Booking(String startDate, String endDate, List<Room> bookableItems, Boolean ongoing) {
+    public Booking(String startDate, String endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ongoing = ongoing;
-//        this.bookableItems = new ArrayList<Room>();
+        this.ongoing = Boolean.FALSE;
+        this.rooms = new ArrayList<Room>();
     }
 
     public Booking() {
@@ -72,13 +72,13 @@ public abstract class Booking {
         this.endDate = endDate;
     }
 
-//    public List<Room> getRooms() {
-//        return bookableItems;
-//    }
-//
-//    public void setRooms(List<Room> bookableItems) {
-//        this.bookableItems = bookableItems;
-//    }
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 
     public String getNotes() {
         return notes;
@@ -94,5 +94,9 @@ public abstract class Booking {
 
     public void setOngoing(Boolean ongoing) {
         this.ongoing = ongoing;
+    }
+
+    public void addRoom(Room room){
+        this.rooms.add(room);
     }
 }

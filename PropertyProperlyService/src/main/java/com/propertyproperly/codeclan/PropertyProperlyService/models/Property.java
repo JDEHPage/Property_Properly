@@ -28,6 +28,9 @@ public class Property {
         this.types = new ArrayList<Type>();
     }
 
+    public Property() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -50,5 +53,9 @@ public class Property {
 
     public void setTypes(List<Type> types) {
         this.types = types;
+    }
+
+    public void addType(Type type){
+        this.types.add(type);
     }
 }

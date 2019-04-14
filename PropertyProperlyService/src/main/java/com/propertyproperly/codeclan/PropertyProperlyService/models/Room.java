@@ -53,15 +53,15 @@ public class Room {
     @Column(name = "clean")
     private Boolean clean;
 
-//    @JsonIgnoreProperties("bookableItems")
-//    @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    @JoinTable(
-//            name = "bookableitems_bookings",
-//            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
-//    )
-//    private List<Booking> bookings;
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "rooms_bookings",
+            joinColumns = {@JoinColumn(name = "room_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
+    )
+    private List<Booking> bookings;
 
     public Room(String name, int capacity, int rate, Type type) {
         this.name = name;
@@ -71,7 +71,7 @@ public class Room {
         this.clean = Boolean.TRUE;
         this.paymentOptions = new ArrayList<PaymentOption>();
         this.amenities = new ArrayList<Amenity>();
-
+        this.bookings = new ArrayList<Booking>();
     }
 
     public Room() {
@@ -141,11 +141,23 @@ public class Room {
         this.clean = clean;
     }
 
-    //    public List<Booking> getBookings() {
-//        return bookings;
-//    }
-//
-//    public void setBookings(List<Booking> bookings) {
-//        this.bookings = bookings;
-//    }
+        public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public void addPaymentOption(PaymentOption paymentOption){
+        this.paymentOptions.add(paymentOption);
+    }
+
+    public void addAmenity(Amenity amenity){
+        this.amenities.add(amenity);
+    }
+
+    public void addBooking(Booking booking){
+        this.bookings.add(booking);
+    }
 }

@@ -36,6 +36,9 @@ public class Type {
         this.rooms = new ArrayList<Room>();
     }
 
+    public Type() {
+    }
+
     public Long getId() {
         return id;
     }
