@@ -13,7 +13,7 @@
 //    @Column
 //    private String type;
 //
-//    public MaintenanceBooking(String startDate, String endDate, List<BookableItem> bookableItems, Boolean ongoing, String type) {
+//    public MaintenanceBooking(String startDate, String endDate, List<Room> bookableItems, Boolean ongoing, String type) {
 //        super(startDate, endDate, bookableItems, ongoing);
 //        this.type = type;
 //    }
@@ -21,11 +21,11 @@
 //    public MaintenanceBooking() {
 //    }
 //
-//    public String getType() {
+//    public String getRType() {
 //        return type;
 //    }
 //
-//    public void setType(String type) {
+//    public void setRType(String type) {
 //        this.type = type;
 //    }
 //}

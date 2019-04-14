@@ -1,13 +1,10 @@
 package com.propertyproperly.codeclan.PropertyProperlyService;
 
 import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.Amenity.AmenityRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.BookableItem.BookableItemRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.BookableItemType.BookableItemTypeRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.BookableItem.RoomRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.BookableItemType.TypeRepository;
 import com.propertyproperly.codeclan.PropertyProperlyService.Repositories.Property.PropertyRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.Amenity;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItem;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookingItemType;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.Property;
+import com.propertyproperly.codeclan.PropertyProperlyService.models.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +22,10 @@ public class PropertyProperlyServiceApplicationTests {
 	PropertyRepository propertyRepository;
 
 	@Autowired
-	BookableItemTypeRepository bookableItemTypeRepository;
+	TypeRepository typeRepository;
 
 	@Autowired
-	BookableItemRepository bookableItemRepository;
+	RoomRepository roomRepository;
 
 	@Test
 	public void contextLoads() {
@@ -41,26 +38,31 @@ public class PropertyProperlyServiceApplicationTests {
 	}
 
 	@Test
+	public void canCreatePayment() {
+		PaymentOption paymentOption = new PaymentOption("Card");
+	}
+
+	@Test
 	public void canCreateProperty() {
-		Property property = new Property("Place");
+		Property property = new Property("Castle");
 		propertyRepository.save(property);
 	}
 
 	@Test
 	public void canCreateBookingItemType() {
-		Property property = new Property("Place");
+		Property property = new Property("Cottange");
 		propertyRepository.save(property);
-		BookingItemType bookingItemType = new BookingItemType("Single Room", property);
-		bookableItemTypeRepository.save(bookingItemType);
+		Type bookingItemType = new Type("Double", property);
+		typeRepository.save(bookingItemType);
 	}
 
 	@Test
 	public void canCreateBookableItem() {
 		Property property = new Property("Place");
 		propertyRepository.save(property);
-		BookingItemType bookingItemType = new BookingItemType("Single Room", property);
-		bookableItemTypeRepository.save(bookingItemType);
-		BookableItem bookableItem = new BookableItem("R1", 1, 5000, bookingItemType, true);
-		bookableItemRepository.save(bookableItem);
+		Type type = new Type("Single Room", property);
+		typeRepository.save(type);
+		Room room = new Room("R1", 1, 5000, type);
+		roomRepository.save(room);
 	}
 }

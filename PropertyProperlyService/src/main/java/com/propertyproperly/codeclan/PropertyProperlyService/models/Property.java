@@ -21,10 +21,11 @@ public class Property {
 //    @JsonIgnore
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
-    private List<BookingItemType> bookingItemTypes;
+    private List<Type> types;
 
     public Property(String name) {
         this.name = name;
+        this.types = new ArrayList<Type>();
     }
 
     public Long getId() {
@@ -43,11 +44,11 @@ public class Property {
         this.name = name;
     }
 
-    public List<BookingItemType> getBookingItemTypes() {
-        return bookingItemTypes;
+    public List<Type> getTypes() {
+        return types;
     }
 
-    public void setBookingItemTypes(List<BookingItemType> bookingItemTypes) {
-        this.bookingItemTypes = bookingItemTypes;
+    public void setTypes(List<Type> types) {
+        this.types = types;
     }
 }

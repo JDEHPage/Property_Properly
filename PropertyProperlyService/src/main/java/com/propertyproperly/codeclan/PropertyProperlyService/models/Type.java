@@ -9,14 +9,14 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "bookingitemtypes")
-public class BookingItemType {
+@Table(name = "types")
+public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnoreProperties("bookingItemTypes")
+    @JsonIgnoreProperties("types")
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
@@ -24,15 +24,16 @@ public class BookingItemType {
     @Column(name = "name")
     private String name;
 
-//    @JsonIgnoreProperties("bookableItems")
+//    @JsonIgnoreProperties("rooms")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "bookingitemtype", fetch = FetchType.LAZY)
-    private List<BookableItem> bookableItems;
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+    private List<Room> rooms;
 
 
-    public BookingItemType(String name, Property property) {
+    public Type(String name, Property property) {
         this.property = property;
         this.name = name;
+        this.rooms = new ArrayList<Room>();
     }
 
     public Long getId() {
@@ -59,11 +60,11 @@ public class BookingItemType {
         this.name = name;
     }
 
-    public List<BookableItem> getBookableItems() {
-        return bookableItems;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setBookableItems(List<BookableItem> bookableItems) {
-        this.bookableItems = bookableItems;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

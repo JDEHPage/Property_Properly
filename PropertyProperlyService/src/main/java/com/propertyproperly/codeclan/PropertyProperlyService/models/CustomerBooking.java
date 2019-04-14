@@ -19,7 +19,7 @@
 //    @JoinColumn(name = "customer_id", nullable = false)
 //    private Customer customer;
 //
-//    public CustomerBooking(String startDate, String endDate, List<BookableItem> bookableItems, Boolean ongoing, Boolean paid, Customer customer) {
+//    public CustomerBooking(String startDate, String endDate, List<Room> bookableItems, Boolean ongoing, Boolean paid, Customer customer) {
 //        super(startDate, endDate, bookableItems, ongoing);
 //        this.paid = paid;
 //        this.customer = customer;

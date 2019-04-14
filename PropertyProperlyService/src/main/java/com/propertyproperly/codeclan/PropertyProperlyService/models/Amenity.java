@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,18 +21,19 @@ public class Amenity {
     @Column(name = "description")
     private String description;
 
-//    @JsonIgnoreProperties("amenities")
-//    @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    @JoinTable(
-//            joinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
-//    )
-//    List<BookableItem> bookableItems;
+    @JsonIgnoreProperties("amenities")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "room_id", nullable = false, updatable = false)}
+    )
+    List<Room> rooms;
 
     public Amenity(String name, String description) {
         this.name = name;
         this.description = description;
+        this.rooms = new ArrayList<Room>();
     }
 
     public Amenity() {
@@ -61,11 +63,11 @@ public class Amenity {
         this.description = description;
     }
 
-//    public List<BookableItem> getBookableItems() {
-//        return bookableItems;
-//    }
-//
-//    public void setBookableItems(List<BookableItem> bookableItems) {
-//        this.bookableItems = bookableItems;
-//    }
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 }
