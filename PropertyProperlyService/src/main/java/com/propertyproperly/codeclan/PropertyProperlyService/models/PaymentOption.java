@@ -7,25 +7,34 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "bookable_item_types")
-public class BookableItemType {
+@Table( name = "payment_options")
+public class PaymentOption {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column ( name = "name" )
     private String name;
 
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+    @Column ( name = "description" )
+    private String description;
+
+    @JsonIgnoreProperties("paymentOptions")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "bookableItems_paymentOptions",
+            joinColumns = {@JoinColumn( name = "payment_option_id", updatable = false)},
+            inverseJoinColumns = {@JoinColumn( name = "bookable_item_id", updatable = false)}
+    )
     private List<BookableItem> bookableItems;
 
-    public BookableItemType(String name) {
+    public PaymentOption(String name) {
         this.name = name;
     }
 
-    public BookableItemType() {
+    public PaymentOption() {
     }
 
     public Long getId() {
@@ -42,6 +51,14 @@ public class BookableItemType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<BookableItem> getBookableItems() {
