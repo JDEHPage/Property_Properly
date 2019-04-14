@@ -18,14 +18,13 @@ public class Property {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
+//    @JsonIgnore
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
     private List<BookingItemType> bookingItemTypes;
 
     public Property(String name) {
         this.name = name;
-        this.bookingItemTypes = new ArrayList<BookingItemType>();
     }
 
     public Long getId() {

@@ -10,39 +10,39 @@ import java.util.List;
 @Entity
 @Table(name = "bookableitems")
 public class BookableItem {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
-    
+
     @Column(name = "capacity")
     private int capacity;
-    
+
     @Column(name = "rate")
     private int rate;
 
-    @JsonIgnoreProperties("bookableItems")
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "bookableitems_paymentoptions",
-            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "paymentoption_id", nullable = false, updatable = false)}
-    )
-    private List<PaymentOption> paymentOptions;
+//    @JsonIgnoreProperties("bookableItems")
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "bookableitems_paymentoptions",
+//            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "paymentoption_id", nullable = false, updatable = false)}
+//    )
+//    private List<PaymentOption> paymentOptions;
 
-    @JsonIgnoreProperties("bookableItems")
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "bookableitems_amenities",
-            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)}
-    )
-    private List<Amenity> amenities;
+//    @JsonIgnoreProperties("bookableItems")
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "bookableitems_amenities",
+//            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)}
+//    )
+//    private List<Amenity> amenities;
 
     @JsonIgnoreProperties("bookableItems")
     @ManyToOne
@@ -52,15 +52,15 @@ public class BookableItem {
     @Column(name = "clean")
     private Boolean clean;
 
-    @JsonIgnoreProperties("bookableItems")
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "bookableitems_bookings",
-            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
-    )
-    private List<Booking> bookings;
+//    @JsonIgnoreProperties("bookableItems")
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "bookableitems_bookings",
+//            joinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)}
+//    )
+//    private List<Booking> bookings;
 
     public BookableItem(String name, int capacity, int rate, BookingItemType bookingItemType, Boolean clean) {
         this.name = name;
@@ -68,9 +68,6 @@ public class BookableItem {
         this.rate = rate;
         this.bookingItemType = bookingItemType;
         this.clean = clean;
-        this.bookings = new ArrayList<Booking>();
-        this.amenities = new ArrayList<Amenity>();
-        this.paymentOptions = new ArrayList<PaymentOption>();
     }
 
     public BookableItem() {
@@ -108,21 +105,21 @@ public class BookableItem {
         this.rate = rate;
     }
 
-    public List<PaymentOption> getPaymentOptions() {
-        return paymentOptions;
-    }
-
-    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
-        this.paymentOptions = paymentOptions;
-    }
-
-    public List<Amenity> getAmenities() {
-        return amenities;
-    }
-
-    public void setAmenities(List<Amenity> amenities) {
-        this.amenities = amenities;
-    }
+//    public List<PaymentOption> getPaymentOptions() {
+//        return paymentOptions;
+//    }
+//
+//    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
+//        this.paymentOptions = paymentOptions;
+//    }
+//
+//    public List<Amenity> getAmenities() {
+//        return amenities;
+//    }
+//
+//    public void setAmenities(List<Amenity> amenities) {
+//        this.amenities = amenities;
+//    }
 
     public BookingItemType getBookingItemType() {
         return bookingItemType;
@@ -140,11 +137,11 @@ public class BookableItem {
         this.clean = clean;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+//    public List<Booking> getBookings() {
+//        return bookings;
+//    }
+//
+//    public void setBookings(List<Booking> bookings) {
+//        this.bookings = bookings;
+//    }
 }

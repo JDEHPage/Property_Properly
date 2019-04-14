@@ -20,14 +20,14 @@ public class Amenity {
     @Column(name = "description")
     private String description;
 
-    @JsonIgnoreProperties("amenities")
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            joinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
-    )
-    List<BookableItem> bookableItems;
+//    @JsonIgnoreProperties("amenities")
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            joinColumns = {@JoinColumn(name = "amenity_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "bookableitem_id", nullable = false, updatable = false)}
+//    )
+//    List<BookableItem> bookableItems;
 
     public Amenity(String name, String description) {
         this.name = name;
@@ -61,11 +61,11 @@ public class Amenity {
         this.description = description;
     }
 
-    public List<BookableItem> getBookableItems() {
-        return bookableItems;
-    }
-
-    public void setBookableItems(List<BookableItem> bookableItems) {
-        this.bookableItems = bookableItems;
-    }
+//    public List<BookableItem> getBookableItems() {
+//        return bookableItems;
+//    }
+//
+//    public void setBookableItems(List<BookableItem> bookableItems) {
+//        this.bookableItems = bookableItems;
+//    }
 }

@@ -19,7 +19,7 @@ public class BookingItemType {
     @JsonIgnoreProperties("bookingItemTypes")
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
-    private List<Property> properties;
+    private Property property;
 
     @Column(name = "name")
     private String name;
@@ -29,9 +29,10 @@ public class BookingItemType {
     @OneToMany(mappedBy = "bookingitemtype", fetch = FetchType.LAZY)
     private List<BookableItem> bookableItems;
 
-    public BookingItemType(String name) {
+
+    public BookingItemType(String name, Property property) {
+        this.property = property;
         this.name = name;
-        this.bookableItems = new ArrayList<BookableItem>();
     }
 
     public Long getId() {
@@ -42,12 +43,12 @@ public class BookingItemType {
         this.id = id;
     }
 
-    public List<Property> getProperties() {
-        return properties;
+    public Property getProperty() {
+        return property;
     }
 
-    public void setProperties(List<Property> properties) {
-        this.properties = properties;
+    public void setProperty(Property property) {
+        this.property = property;
     }
 
     public String getName() {
