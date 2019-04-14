@@ -1,8 +1,6 @@
 package com.propertyproperly.codeclan.PropertyProperlyService;
 
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItem;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItemType;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.PaymentOption;
+import com.propertyproperly.codeclan.PropertyProperlyService.models.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +27,11 @@ public class PropertyProperlyServiceApplicationTests {
 	}
 
 	@Test
+	public void canCreateAmenity(){
+		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
+	}
+
+	@Test
 	public void canCreateBookableItem(){
 		BookableItemType singleRoom = new BookableItemType("Single Room");
 		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
@@ -37,13 +40,21 @@ public class PropertyProperlyServiceApplicationTests {
 	@Test
 	public void canAddPaymentOptionToBookableItem(){
 		PaymentOption creditCard = new PaymentOption( "credit card");
+		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
 
 		BookableItemType singleRoom = new BookableItemType("Single Room");
 		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
 
 		room101.addPaymentOption(creditCard);
+		room101.addAmenity(ensuiteBathroom);
 
-//		assertEquals(1, room101.getPaymentOptions().size());
+		assertEquals(1, room101.getPaymentOptions().size());
+		assertEquals(1, room101.getAmenities().size());
+	}
+
+	@Test
+	public void canAddANewCustomer(){
+		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 	}
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,11 +39,23 @@ public class BookableItem {
     )
     private List<PaymentOption> paymentOptions;
 
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "bookableItems_amenities",
+            joinColumns = {@JoinColumn( name = "bookable_item_id", updatable = false)},
+            inverseJoinColumns = {@JoinColumn( name = "amenity_id", updatable = false)}
+    )
+    private List<Amenity> amenities;
+
     public BookableItem(BookableItemType type, int capacity, int rate) {
         this.type = type;
         this.capacity = capacity;
         this.rate = rate;
         this.clean = true;
+        this.paymentOptions = new ArrayList<PaymentOption>();
+        this.amenities = new ArrayList<Amenity>();
     }
 
     public BookableItem() {
@@ -98,5 +111,17 @@ public class BookableItem {
 
     public void addPaymentOption(PaymentOption paymentOption){
         this.paymentOptions.add(paymentOption);
+    }
+
+    public List<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(List<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
+    public void addAmenity(Amenity amenity){
+        this.amenities.add(amenity);
     }
 }

@@ -8,37 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table( name = "payment_options")
-public class PaymentOption {
+@Table( name = "amenities")
+public class Amenity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column ( name = "name" )
+    @Column( name = "name" )
     private String name;
 
-    @Column ( name = "description" )
+    @Column( name = "description" )
     private String description;
 
-    @JsonIgnoreProperties("paymentOptions")
+    @JsonIgnoreProperties("amenities")
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
-            name = "bookableItems_paymentOptions",
-            joinColumns = {@JoinColumn( name = "payment_option_id", updatable = false)},
+            name = "bookableItems_amenities",
+            joinColumns = {@JoinColumn( name = "amenity_id", updatable = false)},
             inverseJoinColumns = {@JoinColumn( name = "bookable_item_id", updatable = false)}
     )
     private List<BookableItem> bookableItems;
 
-    public PaymentOption(String name) {
-
+    public Amenity(String name) {
         this.name = name;
         this.description = "";
         this.bookableItems = new ArrayList<BookableItem>();
     }
 
-    public PaymentOption() {
+    public Amenity() {
     }
 
     public Long getId() {
