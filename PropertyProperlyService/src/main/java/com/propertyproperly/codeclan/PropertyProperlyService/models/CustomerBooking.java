@@ -9,6 +9,7 @@ import java.util.Date;
 @Table( name = "customer_bookings")
 public class CustomerBooking extends Booking {
 
+
     @JsonIgnoreProperties("customerBookings")
     @ManyToOne
     @JoinColumn( name = "customer_id", nullable = false)

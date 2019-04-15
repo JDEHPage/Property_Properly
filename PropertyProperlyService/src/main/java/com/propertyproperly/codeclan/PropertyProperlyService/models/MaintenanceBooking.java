@@ -9,6 +9,8 @@ import java.util.Date;
 @Table( name = "maintenance_bookings")
 public class MaintenanceBooking extends Booking {
 
+
+
     @Column( name = "type")
     private String type;
 
