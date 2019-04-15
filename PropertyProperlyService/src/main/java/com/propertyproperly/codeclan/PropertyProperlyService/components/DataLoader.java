@@ -68,15 +68,19 @@ public class DataLoader implements ApplicationRunner {
         Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
         customerRepository.save(customer1);
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format( new Date()   );
-        Date startDate = format.parse("2019-05-01");
-        Date endDate = format.parse("2019-05-04");
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        String dateString = format.format( new Date()   );
+//        Date startDate = format.parse("2019-05-01");
+//        Date endDate = format.parse("2019-05-04");
 
-        CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
+        CustomerBooking booking1 = new CustomerBooking("2019-05-01", "2019-05-04", customer1);
+        customerBookingRepository.save(booking1);
+        booking1.addBookableItem(room101);
         customerBookingRepository.save(booking1);
 
-        MaintenanceBooking maintenanceBooking = new MaintenanceBooking(startDate, endDate, room102, "painting");
+        MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-01", "2019-05-04", "painting");
+        maintenanceBookingRepository.save(maintenanceBooking);
+        maintenanceBooking.addBookableItem(room102);
         maintenanceBookingRepository.save(maintenanceBooking);
 
     }

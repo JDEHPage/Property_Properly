@@ -79,28 +79,22 @@ public class PropertyProperlyServiceApplicationTests {
 		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String dateString = format.format( new Date()   );
-		Date startDate = null;
-		try {
-			startDate = format.parse("2019-05-01");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		Date endDate = null;
-		try {
-			endDate = format.parse("2019-05-04");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 
-		CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
+		CustomerBooking booking1 = new CustomerBooking("2019-05-01", "2019-05-04", customer1);
+		booking1.addBookableItem(room101);
+		customer1.addBooking(booking1);
 		assertEquals(1, customer1.getBookings().size());
 	}
 
 	@Test
 	public void canCreateMaintenanceBooking(){
+		BookableItemType singleRoom = new BookableItemType("Single Room");
+		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
 
+		MaintenanceBooking booking2 = new MaintenanceBooking("2019-05-01", "2019-05-04", "painting");
+		booking2.addBookableItem(room101);
+		room101.addBooking(booking2);
+		assertEquals(1, room101.getBookings().size());
 	}
 
 }

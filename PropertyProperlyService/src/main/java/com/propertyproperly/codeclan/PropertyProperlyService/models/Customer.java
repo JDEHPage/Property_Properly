@@ -38,6 +38,9 @@ public class Customer {
         this.bookings = new ArrayList<CustomerBooking>();
     }
 
+    public Customer() {
+    }
+
     public Long getId() {
         return id;
     }

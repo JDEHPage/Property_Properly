@@ -54,13 +54,15 @@ public class BookableItem {
     @JoinColumn( name = "property_id", nullable = true)
     private Property property;
 
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "bookableItem", fetch = FetchType.LAZY)
-    private List<CustomerBooking> customerBookings;
-
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "bookableItem", fetch = FetchType.LAZY)
-    private List<MaintenanceBooking> maintenanceBookings;
+    @JsonIgnoreProperties("bookableItems")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "bookings_bookableItems",
+            joinColumns = {@JoinColumn( name = "bookable_item_id", updatable = false)},
+            inverseJoinColumns = {@JoinColumn( name = "booking_id", updatable = false)}
+    )
+    private List<Booking> bookings;
 
     public BookableItem(BookableItemType type, int capacity, int rate) {
         this.type = type;
@@ -69,9 +71,8 @@ public class BookableItem {
         this.clean = true;
         this.paymentOptions = new ArrayList<PaymentOption>();
         this.amenities = new ArrayList<Amenity>();
+        this.bookings = new ArrayList<Booking>();
         this.property = null;
-        this.customerBookings = new ArrayList<CustomerBooking>();
-        this.maintenanceBookings = new ArrayList<MaintenanceBooking>();
     }
 
     public BookableItem() {
@@ -149,19 +150,15 @@ public class BookableItem {
         this.property = property;
     }
 
-    public List<CustomerBooking> getCustomerBookings() {
-        return customerBookings;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setCustomerBookings(List<CustomerBooking> customerBookings) {
-        this.customerBookings = customerBookings;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public List<MaintenanceBooking> getMaintenanceBookings() {
-        return maintenanceBookings;
-    }
-
-    public void setMaintenanceBookings(List<MaintenanceBooking> maintenanceBookings) {
-        this.maintenanceBookings = maintenanceBookings;
+    public void addBooking(Booking booking){
+        this.bookings.add(booking);
     }
 }

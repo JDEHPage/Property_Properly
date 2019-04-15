@@ -23,7 +23,7 @@ public class PaymentOption {
 
     @JsonIgnoreProperties("paymentOptions")
     @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @JoinTable(
             name = "bookableItems_paymentOptions",
             joinColumns = {@JoinColumn( name = "payment_option_id", updatable = false)},

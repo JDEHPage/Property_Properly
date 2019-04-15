@@ -9,26 +9,14 @@ import java.util.Date;
 @Table( name = "customer_bookings")
 public class CustomerBooking extends Booking {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @JsonIgnoreProperties("bookableItems")
-    @ManyToOne
-    @JoinColumn( name = "bookable_item_id", nullable = true)
-    private BookableItem bookableItem;
-
     @JsonIgnoreProperties("customerBookings")
     @ManyToOne
     @JoinColumn( name = "customer_id", nullable = false)
     private Customer customer;
 
-    public CustomerBooking(Date startDate, Date endDate, BookableItem bookableItem, Customer customer) {
+    public CustomerBooking(String startDate, String endDate, Customer customer) {
         super(startDate, endDate);
-        this.bookableItem = bookableItem;
         this.customer = customer;
-
-        customer.addBooking(this);
     }
 
     public CustomerBooking() {
@@ -42,11 +30,4 @@ public class CustomerBooking extends Booking {
         this.customer = customer;
     }
 
-    public BookableItem getBookableItem() {
-        return bookableItem;
-    }
-
-    public void setBookableItem(BookableItem bookableItem) {
-        this.bookableItem = bookableItem;
-    }
 }
