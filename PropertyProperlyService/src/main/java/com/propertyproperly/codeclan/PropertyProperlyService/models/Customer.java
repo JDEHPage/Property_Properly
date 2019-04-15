@@ -1,5 +1,6 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Customer {
     @Column( name = "mobile_number" )
     private String mobileNumber;
 
+    @JsonIgnoreProperties("customer")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<CustomerBooking> bookings;

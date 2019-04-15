@@ -17,6 +17,7 @@ public class BookableItemType {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnoreProperties("type")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
     private List<BookableItem> bookableItems;

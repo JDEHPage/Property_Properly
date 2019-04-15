@@ -54,6 +54,9 @@ public class DataLoader implements ApplicationRunner {
         BookableItemType singleRoom = new BookableItemType("Single Room");
         bookableItemTypeRepository.save(singleRoom);
 
+        BookableItemType doubleRoom = new BookableItemType("Double");
+        bookableItemTypeRepository.save(doubleRoom);
+
         Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
         amenityRepository.save(ensuiteBathroom);
 
@@ -62,7 +65,7 @@ public class DataLoader implements ApplicationRunner {
         room101.addAmenity(ensuiteBathroom);
         bookableItemRepository.save(room101);
 
-        BookableItem room102 = new BookableItem( singleRoom, 1, 30, guestHouse);
+        BookableItem room102 = new BookableItem( doubleRoom, 1, 30, guestHouse);
         bookableItemRepository.save(room102);
 
 
