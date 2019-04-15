@@ -74,18 +74,33 @@ public class PropertyProperlyServiceApplicationTests {
 	}
 
 	@Test
-	public void canCreateCustomerBooking() throws ParseException {
+	public void canCreateCustomerBooking() {
 		BookableItemType singleRoom = new BookableItemType("Single Room");
 		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String dateString = format.format( new Date()   );
-		Date startDate = format.parse("2019-05-01");
-		Date endDate = format.parse("2019-05-04");
+		Date startDate = null;
+		try {
+			startDate = format.parse("2019-05-01");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date endDate = null;
+		try {
+			endDate = format.parse("2019-05-04");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
 		assertEquals(1, customer1.getBookings().size());
+	}
+
+	@Test
+	public void canCreateMaintenanceBooking(){
+
 	}
 
 }

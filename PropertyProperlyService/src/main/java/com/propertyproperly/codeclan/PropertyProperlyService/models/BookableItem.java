@@ -54,6 +54,14 @@ public class BookableItem {
     @JoinColumn( name = "property_id", nullable = true)
     private Property property;
 
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "bookableItem", fetch = FetchType.LAZY)
+    private List<CustomerBooking> customerBookings;
+
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "bookableItem", fetch = FetchType.LAZY)
+    private List<MaintenanceBooking> maintenanceBookings;
+
     public BookableItem(BookableItemType type, int capacity, int rate) {
         this.type = type;
         this.capacity = capacity;
@@ -62,6 +70,8 @@ public class BookableItem {
         this.paymentOptions = new ArrayList<PaymentOption>();
         this.amenities = new ArrayList<Amenity>();
         this.property = null;
+        this.customerBookings = new ArrayList<CustomerBooking>();
+        this.maintenanceBookings = new ArrayList<MaintenanceBooking>();
     }
 
     public BookableItem() {
@@ -137,5 +147,21 @@ public class BookableItem {
 
     public void setProperty(Property property) {
         this.property = property;
+    }
+
+    public List<CustomerBooking> getCustomerBookings() {
+        return customerBookings;
+    }
+
+    public void setCustomerBookings(List<CustomerBooking> customerBookings) {
+        this.customerBookings = customerBookings;
+    }
+
+    public List<MaintenanceBooking> getMaintenanceBookings() {
+        return maintenanceBookings;
+    }
+
+    public void setMaintenanceBookings(List<MaintenanceBooking> maintenanceBookings) {
+        this.maintenanceBookings = maintenanceBookings;
     }
 }

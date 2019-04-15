@@ -34,6 +34,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     CustomerBookingRepository customerBookingRepository;
 
+    @Autowired
+    MaintenanceBookingRepository maintenanceBookingRepository;
+
     public DataLoader(){}
 
     @Override
@@ -72,6 +75,9 @@ public class DataLoader implements ApplicationRunner {
 
         CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
         customerBookingRepository.save(booking1);
+
+        MaintenanceBooking maintenanceBooking = new MaintenanceBooking(startDate, endDate, room102, "painting");
+        maintenanceBookingRepository.save(maintenanceBooking);
 
     }
 }

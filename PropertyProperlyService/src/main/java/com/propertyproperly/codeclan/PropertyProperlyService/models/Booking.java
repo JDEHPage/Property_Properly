@@ -1,19 +1,29 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@MappedSuperclass
 public abstract class Booking {
 
+    @Column(name = "start_date")
     private Date startDate;
+
+    @Column(name = "end_date")
     private Date endDate;
-    private BookableItem bookableItem;
+
+    @Column( name = "ongoing")
     private boolean ongoing;
+
+    @Column(name = "notes")
     private String notes;
 
-    public Booking(Date startDate, Date endDate, BookableItem bookableItem) {
+    public Booking(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.bookableItem = bookableItem;
         this.ongoing = false;
         this.notes = "";
     }
@@ -35,14 +45,6 @@ public abstract class Booking {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    public BookableItem getBookableItem() {
-        return bookableItem;
-    }
-
-    public void setBookableItem(BookableItem bookableItem) {
-        this.bookableItem = bookableItem;
     }
 
     public boolean isOngoing() {
