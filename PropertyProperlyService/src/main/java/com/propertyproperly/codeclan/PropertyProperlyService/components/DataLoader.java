@@ -48,26 +48,29 @@ public class DataLoader implements ApplicationRunner {
         PaymentOption creditCard = new PaymentOption( "credit card");
         paymentOptionRepository.save(creditCard);
 
+        Property guestHouse = new Property("Suppa Duppa Guest House");
+        propertyRepository.save(guestHouse);
+
         BookableItemType singleRoom = new BookableItemType("Single Room");
         bookableItemTypeRepository.save(singleRoom);
 
         Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
         amenityRepository.save(ensuiteBathroom);
 
-        BookableItem room101 = new BookableItem( singleRoom, 1, 50);
+        BookableItem room101 = new BookableItem( singleRoom, 1, 50, guestHouse);
         room101.addPaymentOption(creditCard);
         room101.addAmenity(ensuiteBathroom);
         bookableItemRepository.save(room101);
 
-        BookableItem room102 = new BookableItem( singleRoom, 1, 30);
+        BookableItem room102 = new BookableItem( singleRoom, 1, 30, guestHouse);
         bookableItemRepository.save(room102);
 
-        Property guestHouse = new Property("Suppa Duppa Guest House");
-        guestHouse.addBookableItem(room101);
-        guestHouse.addBookableItem(room102);
-        propertyRepository.save(guestHouse);
-        bookableItemRepository.save(room101);
-        bookableItemRepository.save(room102);
+
+//        guestHouse.addBookableItem(room101);
+//        guestHouse.addBookableItem(room102);
+//        bookableItemRepository.save(room101);
+//        bookableItemRepository.save(room102);
+//        propertyRepository.save(guestHouse);
 
         Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
         customerRepository.save(customer1);

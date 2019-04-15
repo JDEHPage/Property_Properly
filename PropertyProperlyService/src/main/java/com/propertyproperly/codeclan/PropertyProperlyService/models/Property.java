@@ -54,7 +54,5 @@ public class Property {
     }
 
     public void addBookableItem(BookableItem bookableItem){
-        this.bookableItems.add(bookableItem);
-        bookableItem.setProperty(this);
-    }
+        this.bookableItems.add(bookableItem);}
 }

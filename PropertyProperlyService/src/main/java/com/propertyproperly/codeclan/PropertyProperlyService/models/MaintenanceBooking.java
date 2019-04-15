@@ -10,7 +10,6 @@ import java.util.Date;
 public class MaintenanceBooking extends Booking {
 
 
-
     @Column( name = "type")
     private String type;
 

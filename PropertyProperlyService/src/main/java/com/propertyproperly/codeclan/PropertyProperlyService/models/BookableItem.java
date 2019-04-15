@@ -51,7 +51,7 @@ public class BookableItem {
 
     @JsonIgnoreProperties("bookableItems")
     @ManyToOne
-    @JoinColumn( name = "property_id", nullable = true)
+    @JoinColumn( name = "property_id", nullable = false)
     private Property property;
 
     @JsonIgnoreProperties("bookableItems")
@@ -64,7 +64,7 @@ public class BookableItem {
     )
     private List<Booking> bookings;
 
-    public BookableItem(BookableItemType type, int capacity, int rate) {
+    public BookableItem(BookableItemType type, int capacity, int rate, Property property) {
         this.type = type;
         this.capacity = capacity;
         this.rate = rate;
@@ -72,7 +72,7 @@ public class BookableItem {
         this.paymentOptions = new ArrayList<PaymentOption>();
         this.amenities = new ArrayList<Amenity>();
         this.bookings = new ArrayList<Booking>();
-        this.property = null;
+        this.property = property;
     }
 
     public BookableItem() {
