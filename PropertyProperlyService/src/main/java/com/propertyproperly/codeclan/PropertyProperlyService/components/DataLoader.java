@@ -1,14 +1,18 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.components;
 
 import com.propertyproperly.codeclan.PropertyProperlyService.models.*;
-import com.propertyproperly.codeclan.PropertyProperlyService.repositories.*;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.Amenities.AmenityRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.BookableItemType.BookableItemTypeRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.BookableItems.BookableItemRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.Customer.CustomerRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.CustomerBooking.CustomerBookingRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.MaintenanceBooking.MaintenanceBookingRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.PaymentOption.PaymentOptionRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.Property.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -73,10 +77,10 @@ public class DataLoader implements ApplicationRunner {
 //        Date startDate = format.parse("2019-05-01");
 //        Date endDate = format.parse("2019-05-04");
 
-        CustomerBooking booking1 = new CustomerBooking("2019-05-01", "2019-05-04", customer1);
-        customerBookingRepository.save(booking1);
-        booking1.addBookableItem(room101);
-        customerBookingRepository.save(booking1);
+//        CustomerBooking booking1 = new CustomerBooking("2019-05-01", "2019-05-04", customer1);
+//        customerBookingRepository.save(booking1);
+//        booking1.addBookableItem(room101);
+//        customerBookingRepository.save(booking1);
 
         MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-01", "2019-05-04", "painting");
         maintenanceBookingRepository.save(maintenanceBooking);

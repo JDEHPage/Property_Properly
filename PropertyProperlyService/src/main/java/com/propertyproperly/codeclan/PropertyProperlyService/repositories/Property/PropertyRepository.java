@@ -1,7 +1,9 @@
-package com.propertyproperly.codeclan.PropertyProperlyService.repositories;
+package com.propertyproperly.codeclan.PropertyProperlyService.repositories.Property;
 
 import com.propertyproperly.codeclan.PropertyProperlyService.models.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PropertyRepository extends JpaRepository<Property, Long> {
 }
