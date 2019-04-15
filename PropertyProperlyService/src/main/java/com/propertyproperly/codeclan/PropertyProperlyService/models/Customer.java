@@ -1,6 +1,10 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table( name = "customers" )
@@ -22,11 +26,16 @@ public class Customer {
     @Column( name = "mobile_number" )
     private String mobileNumber;
 
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<CustomerBooking> bookings;
+
     public Customer(String name, String address, String email) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.mobileNumber = null;
+        this.bookings = new ArrayList<CustomerBooking>();
     }
 
     public Long getId() {
@@ -67,5 +76,17 @@ public class Customer {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public List<CustomerBooking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<CustomerBooking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public void addBooking(CustomerBooking booking){
+        this.bookings.add(booking);
     }
 }

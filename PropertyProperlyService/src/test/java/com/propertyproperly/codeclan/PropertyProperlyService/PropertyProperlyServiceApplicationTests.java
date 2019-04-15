@@ -6,6 +6,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -38,6 +42,18 @@ public class PropertyProperlyServiceApplicationTests {
 	}
 
 	@Test
+	public void canCreateProperty(){
+		BookableItemType singleRoom = new BookableItemType("Single Room");
+		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
+
+		Property guestHouse = new Property("Suppa Duppa Guest House");
+		guestHouse.addBookableItem(room101);
+
+		assertEquals(1, guestHouse.getBookableItems().size());
+		assertEquals(guestHouse, room101.getProperty());
+	}
+
+	@Test
 	public void canAddPaymentOptionToBookableItem(){
 		PaymentOption creditCard = new PaymentOption( "credit card");
 		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
@@ -55,6 +71,21 @@ public class PropertyProperlyServiceApplicationTests {
 	@Test
 	public void canAddANewCustomer(){
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
+	}
+
+	@Test
+	public void canCreateCustomerBooking() throws ParseException {
+		BookableItemType singleRoom = new BookableItemType("Single Room");
+		BookableItem room101 = new BookableItem( singleRoom, 1, 50);
+		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = format.format( new Date()   );
+		Date startDate = format.parse("2019-05-01");
+		Date endDate = format.parse("2019-05-04");
+
+		CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
+		assertEquals(1, customer1.getBookings().size());
 	}
 
 }

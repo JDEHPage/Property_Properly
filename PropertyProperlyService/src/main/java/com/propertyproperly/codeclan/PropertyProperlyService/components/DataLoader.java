@@ -1,17 +1,14 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.components;
 
-import com.propertyproperly.codeclan.PropertyProperlyService.models.Amenity;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItem;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItemType;
-import com.propertyproperly.codeclan.PropertyProperlyService.models.PaymentOption;
-import com.propertyproperly.codeclan.PropertyProperlyService.repositories.AmenityRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.repositories.BookableItemRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.repositories.BookableItemTypeRepository;
-import com.propertyproperly.codeclan.PropertyProperlyService.repositories.PaymentOptionRepository;
+import com.propertyproperly.codeclan.PropertyProperlyService.models.*;
+import com.propertyproperly.codeclan.PropertyProperlyService.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -27,6 +24,15 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     AmenityRepository amenityRepository;
+
+    @Autowired
+    PropertyRepository propertyRepository;
+
+    @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
+    CustomerBookingRepository customerBookingRepository;
 
     public DataLoader(){}
 
@@ -46,6 +52,26 @@ public class DataLoader implements ApplicationRunner {
         room101.addAmenity(ensuiteBathroom);
         bookableItemRepository.save(room101);
 
+        BookableItem room102 = new BookableItem( singleRoom, 1, 30);
+        bookableItemRepository.save(room102);
+
+        Property guestHouse = new Property("Suppa Duppa Guest House");
+        guestHouse.addBookableItem(room101);
+        guestHouse.addBookableItem(room102);
+        propertyRepository.save(guestHouse);
+        bookableItemRepository.save(room101);
+        bookableItemRepository.save(room102);
+
+        Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
+        customerRepository.save(customer1);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = format.format( new Date()   );
+        Date startDate = format.parse("2019-05-01");
+        Date endDate = format.parse("2019-05-04");
+
+        CustomerBooking booking1 = new CustomerBooking(startDate, endDate, room101, customer1);
+        customerBookingRepository.save(booking1);
 
     }
 }
