@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class FrontDesk extends Component {
 	render(){
 		return(
-			<React.Fragment>
-			<h2>Front Desk</h2>
-			</React.Fragment>
+			<main>
+			<h2 className="page-title">Front Desk</h2>
+			</main>
 		);
 	}
 }

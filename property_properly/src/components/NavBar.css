@@ -1,0 +1,42 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	padding: 0 20px;
+	background-color: #fff;
+	border-bottom: 1px solid #dedede;
+	box-shadow: 5px 5px 7px #eee;
+}
+
+.header h1 {
+margin: 0;
+}
+
+nav ul {
+display: flex;
+justify-content: flex-end;
+list-style: none;
+padding-left: 0;
+}
+
+nav ul li {
+margin-left: 30px;
+}
+
+nav ul li a {
+padding: 16px 10px;
+text-decoration: none;
+text-transform: uppercase;
+color: #000;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+color:#FFF;
+background-color: #000;
+}

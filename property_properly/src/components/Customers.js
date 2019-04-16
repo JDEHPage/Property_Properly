@@ -2,9 +2,9 @@ import React from 'react';
 
 const Customers = () => {
 	return(
-		<React.Fragment>
-		<h2>Customers</h2>
-		</React.Fragment>
+		<main>
+		<h2 className="page-title">Customers</h2>
+		</main>
 	);
 }
 
