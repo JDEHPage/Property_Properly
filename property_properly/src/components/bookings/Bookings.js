@@ -1,7 +1,12 @@
 import React from 'react';
+import Booking from './Booking.js';
 import './Bookings.css';
 
-const Bookings = () => {
+const Bookings = ( { bookings } ) => {
+	const allBookings = bookings.map((booking, index) => {
+		return <Booking key={index} booking={booking} />
+	});
+
 	return (
 		<main>
 		<h2 className="page-title">Bookings</h2>
@@ -17,8 +22,10 @@ const Bookings = () => {
 				<th>Room</th>
 				<th>Total Price</th>
 			</tr>
-			<tr>
-			</tr>
+
+
+			{allBookings}
+
 			</tbody>
 		</table>
 		</main>
