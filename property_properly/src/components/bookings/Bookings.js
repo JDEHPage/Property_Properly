@@ -3,6 +3,14 @@ import Booking from './Booking.js';
 import './Bookings.css';
 
 const Bookings = ( { bookings } ) => {
+	// const calculateNumNights = () => {
+	// 	return (3);
+	// }
+	//
+	// const calculateTotalPrice = () => {
+	// 	return ('£100');
+	// }
+
 	const allBookings = bookings.map((booking, index) => {
 		return <Booking key={index} booking={booking} />
 	});
@@ -22,7 +30,6 @@ const Bookings = ( { bookings } ) => {
 				<th>Room</th>
 				<th>Total Price</th>
 			</tr>
-
 
 			{allBookings}
 

@@ -9,15 +9,17 @@ const Booking = ( { booking } ) => {
 		return ('£100');
 	}
 
+	const allRoomsBooked = booking.bookableItems.map((item)=>{ return item.name}).join(', ');
+
 	return (
 		<tr>
-		<td>booking id</td>
-		<td>start date</td>
-		<td>end date</td>
-		<td>{calculateNumNights}</td>
-		<td>customer name</td>
-		<td>room number</td>
-		<td>{calculateTotalPrice}</td>
+		<td>{booking.id}</td>
+		<td>{booking.startDate}</td>
+		<td>{booking.endDate}</td>
+		<td>{calculateNumNights()}</td>
+		<td>{booking.customer.name}</td>
+		<td>{allRoomsBooked}</td>
+		<td>{calculateTotalPrice()}</td>
 		</tr>
 	);
 }
