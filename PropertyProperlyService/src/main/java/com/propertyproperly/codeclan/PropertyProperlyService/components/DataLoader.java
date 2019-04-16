@@ -81,6 +81,9 @@ public class DataLoader implements ApplicationRunner {
         Customer customer2 = new Customer("Shela Summers", "Berlin", "Shel11@gmail.com");
         customerRepository.save(customer2);
 
+        Customer customer3 = new Customer("Sam Winsel", "London", "sammey@gmail.com");
+        customerRepository.save(customer3);
+
 
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        String dateString = format.format( new Date()   );
@@ -96,6 +99,12 @@ public class DataLoader implements ApplicationRunner {
         customerBookingRepository.save(booking2);
         booking2.addBookableItem(room102);
         customerBookingRepository.save(booking2);
+
+        CustomerBooking booking3 = new CustomerBooking("2019-06-01", "2019-06-04", customer3);
+        customerBookingRepository.save(booking3);
+        booking3.addBookableItem(room101);
+        booking3.addBookableItem(room102);
+        customerBookingRepository.save(booking3);
 
         MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-20", "2019-05-21", "painting");
         maintenanceBookingRepository.save(maintenanceBooking);
