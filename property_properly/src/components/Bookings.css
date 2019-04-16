@@ -1,0 +1,8 @@
+.bookings-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.bookings-table tr {
+border: 1px solid #ddd;
+}
