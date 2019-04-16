@@ -6,7 +6,8 @@ const Bookings = () => {
 		<main>
 		<h2 className="page-title">Bookings</h2>
 
-		<table className="bookings-table" cellpadding="5">
+		<table className="bookings-table" cellPadding="5">
+		<tbody>
 			<tr>
 				<th>ID</th>
 				<th>Start Date</th>
@@ -18,6 +19,7 @@ const Bookings = () => {
 			</tr>
 			<tr>
 			</tr>
+			</tbody>
 		</table>
 		</main>
 	);

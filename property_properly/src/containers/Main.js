@@ -7,6 +7,7 @@ import Customers from "../components/Customers";
 import Availability from "../components/Availability";
 import Admin from "../components/Admin";
 import ErrorPage from "../components/ErrorPage";
+import Request from '../helpers/request';
 
 class Main extends Component{
 	constructor(props){
@@ -18,17 +19,21 @@ class Main extends Component{
 	}
 
 	componentDidMount(){
-		fetch('http://localhost:8080/api/bookings')
-		.then(res => res.json())
+		const request = new Request();
+
+		const bookingsPromise = request.get('/api/bookings');
+		const customersPromise = request.get('/api/customers');
+
+		const promises = [bookingsPromise, customersPromise]
+
+		Promise.all(promises)
 		.then(data => {
-			this.setState( { bookings: data } );
+			this.setState({
+				bookings: data[0]._embedded.customerBookings,
+				customers: data[1]._embedded.customers
+			});
 		});
 
-		fetch('http://localhost:8080/api/customers')
-		.then(res => res.json())
-		.then(data => {
-			this.setState( { customers: data } );
-		});
 	}
 
 	render (){
