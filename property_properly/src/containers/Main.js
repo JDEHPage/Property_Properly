@@ -14,7 +14,8 @@ class Main extends Component{
 		super(props);
 		this.state = {
 			bookings: [],
-			customers: []
+			customers: [],
+			bookableItems: []
 		}
 	}
 
@@ -23,14 +24,16 @@ class Main extends Component{
 
 		const bookingsPromise = request.get('/api/bookings');
 		const customersPromise = request.get('/api/customers');
+		const bookableItemsPromise = request.get('/api/bookableItems');
 
-		const promises = [bookingsPromise, customersPromise]
+		const promises = [bookingsPromise, customersPromise, bookableItemsPromise]
 
 		Promise.all(promises)
 		.then(data => {
 			this.setState({
 				bookings: data[0]._embedded.customerBookings,
-				customers: data[1]._embedded.customers
+				customers: data[1]._embedded.customers,
+				bookableItems: data[2]._embedded.bookableItems
 			});
 		});
 
@@ -41,7 +44,9 @@ class Main extends Component{
 			<Router>
 				<NavBar />
 				<Switch>
-					<Route exact path="/" component={FrontDesk} />
+					<Route exact path="/" render={() => {
+						return <FrontDesk bookableItems={this.state.bookableItems} />
+					}} />
 					<Route exact path="/bookings" render={() => {
 						return <Bookings bookings={this.state.bookings} />
 					}} />
