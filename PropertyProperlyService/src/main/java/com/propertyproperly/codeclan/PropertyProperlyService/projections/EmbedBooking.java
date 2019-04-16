@@ -4,7 +4,7 @@ import com.propertyproperly.codeclan.PropertyProperlyService.models.Booking;
 import com.propertyproperly.codeclan.PropertyProperlyService.models.CustomerBooking;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "embedBooking", types = Booking.class)
+@Projection(name = "embedBooking", types = CustomerBooking.class)
 public interface EmbedBooking {
     String getStartDate();
     String getEndDate();
