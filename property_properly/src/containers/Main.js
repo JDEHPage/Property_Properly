@@ -45,14 +45,18 @@ class Main extends Component{
 				<NavBar />
 				<Switch>
 					<Route exact path="/" render={() => {
-						return <FrontDesk bookableItems={this.state.bookableItems} />
+						return <FrontDesk bookableItems={this.state.bookableItems}
+						customers={this.state.customers}/>
 					}} />
+
 					<Route exact path="/bookings" render={() => {
 						return <Bookings bookings={this.state.bookings} />
 					}} />
+
 					<Route exact path="/customers" render={() => {
 						return <Customers customers={this.state.customers} />
 					}} />
+					
 					<Route exact path="/availability" component={Availability} />
 					<Route exact path="/admin" component={Admin} />
 					<Route component={ErrorPage}/>

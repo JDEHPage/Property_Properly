@@ -14,7 +14,8 @@ class FrontDesk extends Component {
 		return(
 			<main>
 			<h2 className="page-title">Front Desk</h2>
-			<BookingForm bookableItems={this.props.bookableItems}/>
+			<BookingForm bookableItems={this.props.bookableItems}
+			customers={this.props.customers}/>
 			</main>
 		);
 	}
