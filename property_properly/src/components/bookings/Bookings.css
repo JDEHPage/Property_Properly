@@ -6,3 +6,7 @@ border-collapse: collapse;
 .bookings-table tr {
 border: 1px solid #ddd;
 }
+
+.bookings-table tr td {
+text-align: center;
+}
