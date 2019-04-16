@@ -18,13 +18,13 @@ class Main extends Component{
 	}
 
 	componentDidMount(){
-		fetch('http://localhost:8080/api/bookings')
+		fetch('http://localhost:8080/api/Bookings')
 		.then(res => res.json())
 		.then(data => {
 			this.setState( { bookings: data } );
 		});
 
-		fetch('http://localhost:8080/api/customers')
+		fetch('http://localhost:8080/api/Customers')
 		.then(res => res.json())
 		.then(data => {
 			this.setState( { customers: data } );
