@@ -39,14 +39,14 @@ public class PropertyProperlyServiceApplicationTests {
 	public void canCreateBookableItem(){
 		Property guest_house = new Property("Guest House");
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-		BookableItem room101 = new BookableItem( singleRoom, 1, 50, guest_house);
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 	}
 
 	@Test
 	public void canCreateProperty(){
 		Property guest_house = new Property("Guest House");
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-		BookableItem room101 = new BookableItem( singleRoom, 1, 50, guest_house);
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 
 		Property guestHouse = new Property("Suppa Duppa Guest House");
 		guestHouse.addBookableItem(room101);
@@ -62,7 +62,7 @@ public class PropertyProperlyServiceApplicationTests {
 		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
 
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-		BookableItem room101 = new BookableItem( singleRoom, 1, 50, guest_house);
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 
 		room101.addPaymentOption(creditCard);
 		room101.addAmenity(ensuiteBathroom);
@@ -80,7 +80,7 @@ public class PropertyProperlyServiceApplicationTests {
 	public void canCreateCustomerBooking() {
 		Property guest_house = new Property("Guest House");
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-		BookableItem room101 = new BookableItem( singleRoom, 1, 50, guest_house);
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
 
@@ -94,7 +94,7 @@ public class PropertyProperlyServiceApplicationTests {
 	public void canCreateMaintenanceBooking(){
 		Property guest_house = new Property("Guest House");
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-		BookableItem room101 = new BookableItem( singleRoom, 1, 50, guest_house);
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 
 		MaintenanceBooking booking2 = new MaintenanceBooking("2019-05-01", "2019-05-04", "painting");
 		booking2.addBookableItem(room101);

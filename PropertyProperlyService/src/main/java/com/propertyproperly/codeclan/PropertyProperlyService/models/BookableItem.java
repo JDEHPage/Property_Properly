@@ -15,6 +15,9 @@ public class BookableItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column( name = "name" )
+    private String name;
+
     @JsonIgnoreProperties("bookableItems")
     @ManyToOne
     @JoinColumn( name = "type_id", nullable = false )
@@ -64,7 +67,8 @@ public class BookableItem {
     )
     private List<Booking> bookings;
 
-    public BookableItem(BookableItemType type, int capacity, int rate, Property property) {
+    public BookableItem(String name, BookableItemType type, int capacity, int rate, Property property) {
+        this.name = name;
         this.type = type;
         this.capacity = capacity;
         this.rate = rate;
@@ -84,6 +88,14 @@ public class BookableItem {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BookableItemType getType() {
