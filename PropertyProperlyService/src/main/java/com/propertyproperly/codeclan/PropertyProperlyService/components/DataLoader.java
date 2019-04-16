@@ -60,12 +60,12 @@ public class DataLoader implements ApplicationRunner {
         Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
         amenityRepository.save(ensuiteBathroom);
 
-        BookableItem room101 = new BookableItem( singleRoom, 1, 50, guestHouse);
+        BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guestHouse);
         room101.addPaymentOption(creditCard);
         room101.addAmenity(ensuiteBathroom);
         bookableItemRepository.save(room101);
 
-        BookableItem room102 = new BookableItem( doubleRoom, 1, 30, guestHouse);
+        BookableItem room102 = new BookableItem("Room 102", doubleRoom, 1, 30, guestHouse);
         bookableItemRepository.save(room102);
 
 

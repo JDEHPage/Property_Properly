@@ -8,13 +8,13 @@ import java.util.List;
 @Projection(name = "embedBookableItem", types = BookableItem.class)
 public interface EmbedBookableItem {
     Long getId();
+    String getName();
+    BookableItemType getType();
+    int getCapacity();
     int getRate();
     boolean isClean();
-    int getCapacity();
-    BookableItemType getType();
     List<PaymentOption> getPaymentOptions();
     List<Amenity> getAmenities();
     Property getProperty();
     List<Booking> getBookings();
-
 }

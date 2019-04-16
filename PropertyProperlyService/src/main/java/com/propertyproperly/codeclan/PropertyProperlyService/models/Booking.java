@@ -34,8 +34,11 @@ public abstract class Booking {
     )
     private List<BookableItem> bookableItems;
 
-    @Column( name = "ongoing")
-    private boolean ongoing;
+    @Column( name = "status")
+    private boolean status;
+
+    @Column( name = "checkin_status")
+    private boolean checkinStatus;
 
     @Column(name = "notes")
     private String notes;
@@ -44,7 +47,9 @@ public abstract class Booking {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookableItems = new ArrayList<BookableItem>();
-        this.ongoing = false;
+        this.status = true;
+        this.checkinStatus = false;
+        
         this.notes = "";
     }
 
@@ -75,12 +80,20 @@ public abstract class Booking {
         this.endDate = endDate;
     }
 
-    public boolean isOngoing() {
-        return ongoing;
+    public boolean isstatus() {
+        return status;
     }
 
-    public void setOngoing(boolean ongoing) {
-        this.ongoing = ongoing;
+    public void setstatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isCheckinStatus() {
+        return checkinStatus;
+    }
+
+    public void setCheckinStatus(boolean checkinStatus) {
+        this.checkinStatus = checkinStatus;
     }
 
     public String getNotes() {
