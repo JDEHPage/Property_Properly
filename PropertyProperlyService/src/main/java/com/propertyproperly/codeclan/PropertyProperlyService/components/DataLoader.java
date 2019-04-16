@@ -60,12 +60,12 @@ public class DataLoader implements ApplicationRunner {
         Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
         amenityRepository.save(ensuiteBathroom);
 
-        BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guestHouse);
+        BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 30, guestHouse);
         room101.addPaymentOption(creditCard);
         room101.addAmenity(ensuiteBathroom);
         bookableItemRepository.save(room101);
 
-        BookableItem room102 = new BookableItem("Room 102", doubleRoom, 1, 30, guestHouse);
+        BookableItem room102 = new BookableItem("Room 102", doubleRoom, 1, 50, guestHouse);
         bookableItemRepository.save(room102);
 
 
@@ -78,6 +78,10 @@ public class DataLoader implements ApplicationRunner {
         Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
         customerRepository.save(customer1);
 
+        Customer customer2 = new Customer("Shela Summers", "Berlin", "Shel11@gmail.com");
+        customerRepository.save(customer2);
+
+
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        String dateString = format.format( new Date()   );
 //        Date startDate = format.parse("2019-05-01");
@@ -88,7 +92,12 @@ public class DataLoader implements ApplicationRunner {
         booking1.addBookableItem(room101);
         customerBookingRepository.save(booking1);
 
-        MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-01", "2019-05-04", "painting");
+        CustomerBooking booking2 = new CustomerBooking("2019-05-01", "2019-05-04", customer2);
+        customerBookingRepository.save(booking2);
+        booking2.addBookableItem(room102);
+        customerBookingRepository.save(booking2);
+
+        MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-20", "2019-05-21", "painting");
         maintenanceBookingRepository.save(maintenanceBooking);
         maintenanceBooking.addBookableItem(room102);
         maintenanceBookingRepository.save(maintenanceBooking);
