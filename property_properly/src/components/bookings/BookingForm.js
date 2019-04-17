@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Request from "../../helpers/request"
+import FormStepOne from './FormStepOne.js'
 
 class BookingForm extends Component{
   constructor(props){
@@ -11,24 +12,11 @@ class BookingForm extends Component{
       bookableItems: [],
       customer: ""
     }
-    this.itemlist = this.itemlist.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  itemlist(){
-    const result = this.props.bookableItems.map((item, index) => {
-      const id = `cust${index}`;
-      return (
-        <span key={index}>
-        <input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
-        <label htmlFor={id} >{item.name} </label>
-        </span>
-      )
-    })
-    return result;
-  }
 
   customerlist(){
     return this.props.customers.map((item, index) => {
@@ -66,18 +54,7 @@ class BookingForm extends Component{
     render(){
       return(
         <form onSubmit= {this.handleSubmit}>
-        <label htmlFor="startDate">Start Date </label>
-        <input type = "date" id="startDate" name="startDate" onChange={this.handleChange}/>
-
-        <label htmlFor="endDate">End Date </label>
-        <input type = "date" id="endDate" name="endDate" onChange={this.handleChange}/>
-
-        <fieldset >
-        <legend>Select Rooms</legend>
-        <div>
-        {this.itemlist()}
-        </div>
-        </fieldset>
+        <FormStepOne handleChange={this.handleChange} bookableItems={this.props.bookableItems} handleCheckboxChange={this.handleCheckboxChange}/>
 
         <label htmlFor="customer">Customer</label>
         <select name="customer" id="customer" defaultValue onChange={this.handleChange}>
