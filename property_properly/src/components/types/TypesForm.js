@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Request from "../../helpers/request"
 
 
-class PropertiesForm extends Component{
+class TypesForm extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -10,11 +10,11 @@ class PropertiesForm extends Component{
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.allProperties = this.allProperties.bind(this);
+    this.alltypes = this.alltypes.bind(this);
   }
 
-  allProperties(){return this.props.properties.map((property, index) => {
-      return <li key={index}>{property.name}</li>
+  alltypes(){return this.props.bookableItemTypes.map((types, index) => {
+      return <li key={index}>{types.name}</li>
     });}
 
   // function allRoomsBooked(){
@@ -27,7 +27,7 @@ class PropertiesForm extends Component{
   handleSubmit(event){
     event.preventDefault();
     const request = new Request();
-    request.post('/api/properties', this.state)
+    request.post('/api/bookableItemTypes', this.state)
     window.location = '/admin'
   }
 
@@ -35,17 +35,17 @@ class PropertiesForm extends Component{
       return(
         <>
         <form onSubmit= {this.handleSubmit}>
-        <label htmlFor="name">Property Name </label>
+        <label htmlFor="name">Room Types </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
 
         <button type="submit">Add</button>
         </form>
         <ul>
-          {this.allProperties()}
+          {this.alltypes()}
         </ul>
         </>
       );
     }
   }
 
-  export default PropertiesForm;
+  export default TypesForm;

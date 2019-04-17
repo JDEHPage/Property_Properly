@@ -39,7 +39,7 @@ class Main extends Component{
 				customers: data[1]._embedded.customers,
 				bookableItems: data[2]._embedded.bookableItems,
 				properties: data[3]._embedded.properties,
-				properties: data[4]._embedded.bookableItemTypes
+				bookableItemTypes: data[4]._embedded.bookableItemTypes
 			});
 		});
 
