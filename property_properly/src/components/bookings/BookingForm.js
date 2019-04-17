@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Request from "../../helpers/request"
 import FormStepOne from './FormStepOne.js'
+import FormStepTwo from './FormStepTwo.js'
 
 class BookingForm extends Component{
   constructor(props){
@@ -15,14 +16,15 @@ class BookingForm extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNewCustomer = this.handleNewCustomer.bind(this);
   }
 
 
-  customerlist(){
-    return this.props.customers.map((item, index) => {
-      return <option key={index} value={item._links.self.href}>{item.email}</option>
-    })
+  handleNewCustomer(newCustomer){
+    this.setState({customer: newCustomer._links.self.href})
   }
+
+
 
   handleChange(event){
     this.setState({[event.target.name]: event.target.value})
@@ -53,20 +55,19 @@ class BookingForm extends Component{
 
     render(){
       return(
+        <>
+        <FormStepTwo handleChange={this.handleChange} bookableItems={this.props.bookableItems} customers={this.props.customers} handleNewCustomer={this.handleNewCustomer}/>
+
         <form onSubmit= {this.handleSubmit}>
         <FormStepOne handleChange={this.handleChange} bookableItems={this.props.bookableItems} handleCheckboxChange={this.handleCheckboxChange}/>
-
-        <label htmlFor="customer">Customer</label>
-        <select name="customer" id="customer" defaultValue onChange={this.handleChange}>
-        <option value="" readOnly>Pick a A Customer...</option>
-        {this.customerlist()}
-        </select>
 
         <label htmlFor="notes">Notes </label>
         <textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
 
         <button type="submit">Save</button>
         </form>
+
+        </>
       );
     }
   }

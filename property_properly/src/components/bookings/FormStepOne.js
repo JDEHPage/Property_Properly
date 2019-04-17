@@ -1,7 +1,7 @@
 import React from 'react'
 
 const FormStepOne = (props) => {
-  console.log(props);
+
 
   function handleDateChange(event){
     props.handleChange(event)
