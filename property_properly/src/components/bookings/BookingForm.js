@@ -22,7 +22,9 @@ class BookingForm extends Component{
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
-		this.show = this.show.bind(this);
+		this.showNext = this.showNext.bind(this);
+		this.showPrev = this.showPrev.bind(this);
+		this.stepThreePrev = this.stepThreePrev.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
@@ -47,23 +49,39 @@ class BookingForm extends Component{
 		})
 	}
 
-	show(stepToShow){
+	showNext(currentStep){
 		let stepOneDiv = document.getElementById("stepOne");
 		let stepTwoDiv = document.getElementById("stepTwo");
 		let stepThreeDiv = document.getElementById("stepThree");
 
-		if(stepToShow === 'stepOne'){
+		if(currentStep === 'stepOne'){
 			this.setState({stepOne: false, stepTwo: true, stepThree: false});
 			stepOneDiv.style.cssText="opacity: 0; display:none;";
 			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
-		} else if(stepToShow === 'stepTwo') {
+		} else {
 			this.setState({stepOne: false, stepTwo: false, stepThree: true});
 			stepTwoDiv.style.cssText="opacity: 0; display:none;";
 			stepThreeDiv.style.cssText="opacity: 1; display:flex;";
-		} else {
-			this.setState({stepOne: false, stepTwo: false, stepThree: true});
 		}
+	}
 
+	showPrev(currentStep){
+		let stepOneDiv = document.getElementById("stepOne");
+		let stepTwoDiv = document.getElementById("stepTwo");
+		let stepThreeDiv = document.getElementById("stepThree");
+
+		if(currentStep === 'stepTwo'){
+			stepTwoDiv.style.cssText="opacity: 0; display:none;";
+			stepOneDiv.style.cssText="opacity: 1; display:flex;";
+		} else {
+			stepThreeDiv.style.cssText="opacity: 0; display:none;";
+			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
+		}
+	}
+
+	stepThreePrev(event){
+		event.preventDefault();
+		this.showPrev("stepThree")
 	}
 
 	render(){
@@ -82,7 +100,8 @@ class BookingForm extends Component{
 			<FormStepTwo
 				bookableItems={this.props.bookableItems}
 				customers={this.props.customers}
-				show={this.show}
+				showNext={this.showNext}
+				showPrev={this.showPrev}
 				handleChange={this.handleChange}
 				handleNewCustomer={this.handleNewCustomer}/>
 
@@ -90,13 +109,13 @@ class BookingForm extends Component{
 				<FormStepOne
 					handleChange={this.handleChange}
 					handleCheckboxChange={this.handleCheckboxChange}
-					show={this.show}
+					showNext={this.showNext}
 					bookableItems={this.props.bookableItems}/>
 
 				<div id="stepThree">
 					<label htmlFor="notes">Notes </label>
 					<textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
-					<button className="prev"> &lt; Previous </button>
+					<button className="prev" onClick={this.stepThreePrev}> &lt; Previous </button>
 					<button type="submit">Save</button>
 				</div>
 

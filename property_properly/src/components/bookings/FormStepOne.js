@@ -25,7 +25,7 @@ const FormStepOne = (props) => {
 
 	const stepOneNext = (event) => {
 		event.preventDefault();
-		props.show(event.target.parentNode.id)
+		props.showNext(event.target.parentNode.id)
 	}
 
 	return(
