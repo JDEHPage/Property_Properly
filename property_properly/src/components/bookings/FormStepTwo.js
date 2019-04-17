@@ -14,7 +14,7 @@ const FormStepTwo = (props) => {
 	}
 
 	return(
-		<div id="step-two">
+		<div id="stepTwo">
 			<label htmlFor="customer">Customer</label>
 			<select name="customer" id="customer" defaultValue onChange={handleCustomerChange}>
 				<option value="" readOnly>Pick a A Customer...</option>

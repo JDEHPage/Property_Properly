@@ -2,16 +2,15 @@ import React from 'react'
 
 const FormStepOne = (props) => {
 
-
-	function handleDateChange(event){
+	const handleDateChange = (event) => {
 		props.handleChange(event)
 	}
 
-	function handleCheckboxChange(event){
+	const handleCheckboxChange = (event) => {
 		props.handleCheckboxChange(event)
 	}
 
-	function itemlist(bookableItems){
+	const itemlist = (bookableItems) => {
 		const result = bookableItems.map((item, index) => {
 			const id = `cust${index}`;
 			return (
@@ -24,18 +23,21 @@ const FormStepOne = (props) => {
 		return result;
 	}
 
-	function stepOneNext(event){
+	const stepOneNext = (event) => {
 		event.preventDefault();
-		console.log("hide step one and show step two");
+		props.show(event.target.parentNode.id)
 	}
 
 	return(
-		<div id="step-one">
-		<label htmlFor="startDate">Start Date </label>
-		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange}/>
+		<div id="stepOne">
 
-		<label htmlFor="endDate">End Date </label>
+		<label htmlFor="startDate">Start Date:
+		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange}/>
+		</label>
+
+		<label htmlFor="endDate">End Date:
 		<input type = "date" id="endDate" name="endDate" onChange={handleDateChange}/>
+		</label>
 
 		<fieldset >
 			<legend>Select Rooms</legend>

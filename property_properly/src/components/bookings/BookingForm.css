@@ -8,16 +8,32 @@ background-color: #eee;
 margin-bottom: 20px;
 }
 
-#step-one{
+#stepOne{
+display: flex;
+flex-wrap: wrap;
 opacity: 1;
 transition: opacity 300ms ease;
 }
 
-#step-two,
-#step-three {
+#stepTwo,
+#stepThree {
 	display: none;
+	flex-wrap: wrap;
 	opacity: 0;
 	transition: opacity 300ms ease;
+}
+
+#stepOne label {
+width: 50%;
+}
+
+#stepOne fieldset {
+width: 100%;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+padding: 10px;
+font-size: 1em;
 }
 
 button.next,
@@ -28,4 +44,19 @@ color: #FFF;
 background-color: #1D6300;
 border: 0;
 font-size: 1em;
+}
+
+fieldset {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+width: auto;
+border: 1px solid #ccc;
+margin: 20px 0;
+}
+
+fieldset span {
+display: inline-block;
+width: 25%;
+margin: 5px;
 }

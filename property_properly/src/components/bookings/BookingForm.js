@@ -14,16 +14,15 @@ class BookingForm extends Component{
 			notes: "",
 			bookableItems: [],
 			customer: "",
-			steps: {
-				stepOne: true,
-				stepTwo: false,
-				stepThree: false
-			}
+			stepOne: true,
+			stepTwo: false,
+			stepThree: false
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
+		this.show = this.show.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
@@ -48,6 +47,22 @@ class BookingForm extends Component{
 		})
 	}
 
+	show(stepToShow){
+		let stepOneDiv = document.getElementById("stepOne");
+		let stepTwoDiv = document.getElementById("stepTwo");
+
+		if(stepToShow === 'stepOne'){
+			this.setState({stepOne: false, stepTwo: true, stepThree: false});
+			stepOneDiv.style.cssText="opacity: 0; display:none;";
+			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
+		} else if(stepToShow === 'stepTwo') {
+			this.setState({stepOne: false, stepTwo: false, stepThree: true});
+		} else {
+			this.setState({stepOne: false, stepTwo: false, stepThree: true});
+		}
+
+	}
+
 	render(){
 		return(
 			<section id="new-booking-form">
@@ -64,13 +79,18 @@ class BookingForm extends Component{
 			<FormStepTwo
 				bookableItems={this.props.bookableItems}
 				customers={this.props.customers}
+				show={this.show}
 				handleChange={this.handleChange}
 				handleNewCustomer={this.handleNewCustomer}/>
 
 			<form onSubmit= {this.handleSubmit}>
-				<FormStepOne handleChange={this.handleChange} bookableItems={this.props.bookableItems} handleCheckboxChange={this.handleCheckboxChange}/>
+				<FormStepOne
+					handleChange={this.handleChange}
+					handleCheckboxChange={this.handleCheckboxChange}
+					show={this.show}
+					bookableItems={this.props.bookableItems}/>
 
-				<div id="step-three">
+				<div id="stepThree">
 					<label htmlFor="notes">Notes </label>
 					<textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
 					<button type="submit">Save</button>
