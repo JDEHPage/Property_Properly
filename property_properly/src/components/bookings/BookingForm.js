@@ -16,7 +16,7 @@ class BookingForm extends Component{
   }
 
   itemlist(){
-    const result =  this.props.bookableItems.map((item, index) => {
+    const result = this.props.bookableItems.map((item, index) => {
       const id = `cust${index}`;
       return (
         <span key={index}>
@@ -38,10 +38,18 @@ class BookingForm extends Component{
     this.setState({[event.target.name]: event.target.value})
   }
 
-  handleCheckboxChange(event){
-    this.setState(prevState => {
-      return{bookableItems: (prevState.bookableItems.add(event.target.value))}
-    });}
+  // handleCheckboxChange(event){
+  //   console.log(event.target.value)
+  //     this.setState({bookableItems: event.target.value})
+  //   }
+
+    handlCeheckboxChange(event){
+    var newArray = this.state.bookableItems.slice();
+    newArray.push(event.target.value);
+    this.setState({bookableItems:newArray})
+    }
+
+
 
 
   // handleSubmit(event){
