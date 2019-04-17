@@ -1,0 +1,31 @@
+#new-booking-form {
+
+}
+
+.current-selection {
+padding: 10px;
+background-color: #eee;
+margin-bottom: 20px;
+}
+
+#step-one{
+opacity: 1;
+transition: opacity 300ms ease;
+}
+
+#step-two,
+#step-three {
+	display: none;
+	opacity: 0;
+	transition: opacity 300ms ease;
+}
+
+button.next,
+button.prev {
+padding: 10px 20px;
+margin: 10px 0;
+color: #FFF;
+background-color: #1D6300;
+border: 0;
+font-size: 1em;
+}
