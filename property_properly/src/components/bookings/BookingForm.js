@@ -24,8 +24,6 @@ class BookingForm extends Component{
     this.setState({customer: newCustomer._links.self.href})
   }
 
-
-
   handleChange(event){
     this.setState({[event.target.name]: event.target.value})
   }
