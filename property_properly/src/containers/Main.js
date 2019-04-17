@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import FrontDesk from "../components/FrontDesk";
 import Bookings from "../components/bookings/Bookings";
-import Customers from "../components/Customers";
+import Customers from "../components/customers/Customers";
 import Availability from "../components/Availability";
 import Admin from "../components/Admin";
 import ErrorPage from "../components/ErrorPage";
@@ -56,7 +56,7 @@ class Main extends Component{
 					<Route exact path="/customers" render={() => {
 						return <Customers customers={this.state.customers} />
 					}} />
-					
+
 					<Route exact path="/availability" component={Availability} />
 					<Route exact path="/admin" component={Admin} />
 					<Route component={ErrorPage}/>

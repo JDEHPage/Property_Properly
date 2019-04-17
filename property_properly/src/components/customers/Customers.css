@@ -1,16 +1,16 @@
-.bookings-table {
+.customers-table {
 width: 100%;
 border-collapse: collapse;
 }
 
-.bookings-table tr {
+.customers-table tr {
 border: 1px solid #ddd;
 }
 
-.bookings-table tbody tr:nth-child(odd) {
+.customers-table tbody tr:nth-child(odd) {
 background-color: #eee;
 }
 
-.bookings-table tr td {
+.customers-table tr td {
 text-align: center;
 }
