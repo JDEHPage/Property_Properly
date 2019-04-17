@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Request from "../../helpers/request"
 
 class BookingForm extends Component{
   constructor(props){
@@ -13,6 +14,7 @@ class BookingForm extends Component{
     this.itemlist = this.itemlist.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   itemlist(){
@@ -43,7 +45,7 @@ class BookingForm extends Component{
   //     this.setState({bookableItems: event.target.value})
   //   }
 
-    handlCeheckboxChange(event){
+    handleCheckboxChange(event){
     var newArray = this.state.bookableItems.slice();
     newArray.push(event.target.value);
     this.setState({bookableItems:newArray})
@@ -52,13 +54,13 @@ class BookingForm extends Component{
 
 
 
-  // handleSubmit(event){
-  //   event.preventDefault();
-  //   const request = new Request();
-  //   request.post('/api/pirates', this.state).then(() => {
-  //     window.location = '/pirates'
-  //   })
-  // }
+  handleSubmit(event){
+    event.preventDefault();
+    const request = new Request();
+    request.post('/api/customerBookings', this.state).then(() => {
+      window.location = '/'
+    })
+  }
 
 
     render(){
@@ -84,7 +86,7 @@ class BookingForm extends Component{
         </select>
 
         <label htmlFor="notes">Notes </label>
-        <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        <textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
 
         <button type="submit">Save</button>
         </form>
