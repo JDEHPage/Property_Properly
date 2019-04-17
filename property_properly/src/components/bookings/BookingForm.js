@@ -62,7 +62,7 @@ class BookingForm extends Component{
         <label htmlFor="endDate">End Date </label>
         <input type = "date" id="endDate" name="endDate" onChange={this.handleChange}/>
 
-        <fieldset >
+        <fieldset>
         <legend>Select Rooms</legend>
         <div>
         {this.itemlist()}

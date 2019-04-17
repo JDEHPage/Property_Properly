@@ -14,3 +14,12 @@ background-color: #eee;
 .customers-table tr td {
 text-align: center;
 }
+
+.arrows img {
+height:8px;
+width:auto;
+}
+
+.arrows img:hover {
+cursor: pointer;
+}

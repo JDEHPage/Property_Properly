@@ -20,6 +20,15 @@ const Customers = ( {customers} ) => {
 		return <Customer key={index} customer={customer} />
 	});
 
+	const arrows = () => {
+		return(
+			<span className="arrows">
+				<img src="../../img/arrow_up.png" alt="arrow up"/>
+				<img src="../../img/arrow_down.png" alt="arrow up"/>
+			</span>
+		);
+	}
+
 	return(
 		<main>
 		<h2 className="page-title">Customers</h2>
@@ -27,8 +36,8 @@ const Customers = ( {customers} ) => {
 		<table className="customers-table" cellPadding="10">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
+					<th id="id">ID {arrows()}</th>
+					<th id="name">Name {arrows()}</th>
 					<th>Address</th>
 					<th>Email</th>
 					<th>Telephone</th>
