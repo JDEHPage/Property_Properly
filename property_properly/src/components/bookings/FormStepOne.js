@@ -44,7 +44,7 @@ const FormStepOne = (props) => {
 			{itemlist(props.bookableItems)}
 		</fieldset>
 
-		<button className="next" onClick={stepOneNext}>Next > </button>
+		<button className="next" onClick={stepOneNext}>Next &gt; </button>
 
 		</div>
 	)

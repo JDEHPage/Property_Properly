@@ -13,6 +13,11 @@ const FormStepTwo = (props) => {
 		})
 	}
 
+	const stepTwoNext = (event) => {
+		event.preventDefault();
+		props.show(event.target.parentNode.id)
+	}
+
 	return(
 		<div id="stepTwo">
 			<label htmlFor="customer">Customer</label>
@@ -22,6 +27,10 @@ const FormStepTwo = (props) => {
 			</select>
 
 			<CustomerForm handleNewCustomer={props.handleNewCustomer}/>
+
+			<button className="prev"> &lt; Previous </button>
+			<button className="next" onClick={stepTwoNext}>Next &gt; </button>
+
 		</div>
 	)
 

@@ -50,6 +50,7 @@ class BookingForm extends Component{
 	show(stepToShow){
 		let stepOneDiv = document.getElementById("stepOne");
 		let stepTwoDiv = document.getElementById("stepTwo");
+		let stepThreeDiv = document.getElementById("stepThree");
 
 		if(stepToShow === 'stepOne'){
 			this.setState({stepOne: false, stepTwo: true, stepThree: false});
@@ -57,6 +58,8 @@ class BookingForm extends Component{
 			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
 		} else if(stepToShow === 'stepTwo') {
 			this.setState({stepOne: false, stepTwo: false, stepThree: true});
+			stepTwoDiv.style.cssText="opacity: 0; display:none;";
+			stepThreeDiv.style.cssText="opacity: 1; display:flex;";
 		} else {
 			this.setState({stepOne: false, stepTwo: false, stepThree: true});
 		}
@@ -93,6 +96,7 @@ class BookingForm extends Component{
 				<div id="stepThree">
 					<label htmlFor="notes">Notes </label>
 					<textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
+					<button className="prev"> &lt; Previous </button>
 					<button type="submit">Save</button>
 				</div>
 
