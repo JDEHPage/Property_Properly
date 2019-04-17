@@ -1,8 +1,21 @@
 import React from 'react';
 
 const Booking = ( { booking } ) => {
+
 	const calculateNumNights = (booking) => {
-		return (3);
+
+		// console.log(typeof booking.endDate);
+
+		// const endDate = booking.endDate.toString()
+		const date2 = new Date(booking.endDate);
+		// console.log(date2)
+		// const startDate = booking.startDate.toString()
+		const date1 = new Date(booking.startDate);
+
+		const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+		const dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		return dayDifference;
+		// return 3
 	}
 
 	const calculateTotalPrice = (booking) => {
@@ -12,7 +25,7 @@ const Booking = ( { booking } ) => {
 			return acc + item;
 		});
 		// multiply by number of nights
-		return calculateNumNights() * totalRates;
+		return calculateNumNights(booking) * totalRates;
 	}
 
 	const allRoomsBooked = booking.bookableItems.map((item)=>{ return item.name}).join(', ');
