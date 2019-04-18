@@ -102,4 +102,7 @@ public class PropertyProperlyServiceApplicationTests {
 		assertEquals(1, room101.getBookings().size());
 	}
 
+	@Test
+	public void bookingRemoves() {
+	}
 }
