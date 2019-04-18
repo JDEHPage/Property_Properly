@@ -13,6 +13,22 @@ const FormStepTwo = (props) => {
 		})
 	}
 
+	const toggleFocus = (event) => {
+		event.preventDefault();
+		if(event.target.id === "customer"){
+			const newCustomerSubmit = document.querySelector('#new-customer-form > button[type="submit"]');
+			newCustomerSubmit.setAttribute("disabled", "disabled");
+		}
+	}
+
+	const toggleBlur = (event) => {
+		event.preventDefault();
+		if(event.target.id === "customer" && event.target.value === ""){
+			const newCustomerSubmit = document.querySelector('#new-customer-form > button[type="submit"]');
+			newCustomerSubmit.removeAttribute("disabled");
+		}
+	}
+
 	const stepTwoNext = (event) => {
 		event.preventDefault();
 
@@ -20,7 +36,7 @@ const FormStepTwo = (props) => {
 		let stepThreeDiv = document.getElementById("stepThree");
 
 		stepTwoDiv.style.cssText="opacity: 0; height:0;";
-		stepThreeDiv.style.cssText="opacity: 1; height:300px;";
+		stepThreeDiv.style.cssText="opacity: 1; height:350px;";
 	}
 
 	const stepTwoPrev = (event) => {
@@ -29,13 +45,13 @@ const FormStepTwo = (props) => {
 		let stepTwoDiv = document.getElementById("stepTwo");
 
 		stepTwoDiv.style.cssText="opacity: 0;  height:0;";
-		stepOneDiv.style.cssText="opacity: 1;  height:300px;";
+		stepOneDiv.style.cssText="opacity: 1;  height:350px;";
 	}
 
 	return(
 		<div id="stepTwo">
-			<label id="existing-customer" htmlFor="customer">Current Customer: &nbsp;
-				<select name="customer" id="customer" defaultValue onChange={handleCustomerChange}>
+			<label htmlFor="customer">Current Customer: &nbsp;
+				<select name="customer" id="customer" defaultValue onChange={handleCustomerChange} onFocus={toggleFocus} onBlur={toggleBlur}>
 					<option value="" readOnly>Pick a Customer...</option>
 					{customerlist(props.customers)}
 				</select>

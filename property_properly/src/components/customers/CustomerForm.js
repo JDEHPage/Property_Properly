@@ -55,7 +55,7 @@ class CustomerForm extends Component{
         <label htmlFor="address">Address </label>
         <input type = "text" id="address" name="address" onChange={this.handleChange}/>
 
-        <button type="submit">Create Customer</button>
+        <button type="submit">Create New Customer</button>
         </form>
       );
     }

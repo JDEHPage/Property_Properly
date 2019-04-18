@@ -58,6 +58,8 @@ class BookingForm extends Component{
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
+			<div className="notifications">hello</div>
+
 			<section id="new-booking-form">
 
 				<CSSTransitionGroup

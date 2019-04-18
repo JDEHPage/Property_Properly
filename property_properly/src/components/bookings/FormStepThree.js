@@ -7,7 +7,7 @@ const FormStepThree = (props) => {
 		let stepThreeDiv = document.getElementById("stepThree");
 
 		stepThreeDiv.style.cssText="opacity: 0; height:0;";
-		stepTwoDiv.style.cssText="opacity: 1; height:300px;";
+		stepTwoDiv.style.cssText="opacity: 1; height:350px;";
 	}
 
 	const handleNotesChange = (event) => {
@@ -16,9 +16,8 @@ const FormStepThree = (props) => {
 
 	return(
 		<div id="stepThree">
-			<label htmlFor="notes">Notes: &nbsp;
-				<textarea name="notes" id="notes" cols="30" rows="10" onChange={handleNotesChange}></textarea >
-			</label>
+			<label htmlFor="notes">Notes: </label>
+			<textarea name="notes" id="notes" cols="30" rows="10" onChange={handleNotesChange}></textarea >
 
 			<button type="submit">Save Booking</button>
 

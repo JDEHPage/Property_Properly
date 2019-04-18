@@ -30,7 +30,7 @@ const FormStepOne = (props) => {
 		let stepTwoDiv = document.getElementById("stepTwo");
 
 		stepOneDiv.style.cssText="opacity: 0; height:0;";
-		stepTwoDiv.style.cssText="opacity: 1; height: 300px;";
+		stepTwoDiv.style.cssText="opacity: 1; height: 350px;";
 	}
 
 	return(
