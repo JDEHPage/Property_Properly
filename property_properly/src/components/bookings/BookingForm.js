@@ -35,12 +35,23 @@ class BookingForm extends Component{
 	}
 
 	handleCheckboxChange(event){
-		var newArray = this.state.bookableItems.slice();
-		newArray.push(event.target.value);
-		this.setState({bookableItems:newArray})
+    const stateItems = this.state.bookableItems;
+    if (event.target.checked === true) {
+      var newArray1 = stateItems.slice();
+  		newArray1.push(event.target.value);
+  		this.setState({bookableItems:newArray1})
 
-    this.displayCheckboxChange()
-	}
+      this.displayCheckboxChange()
+    } else {
+      for( var i = 0; i < stateItems.length; i++){
+        if ( stateItems[i] === event.target.value) {
+          stateItems.splice(i, 1,);
+          var newArray2 = stateItems;
+          this.setState({bookableItems:newArray2})
+          }
+        }
+      }
+	   }
 
   displayCheckboxChange(){
     const arr1 = this.props.bookableItems;
@@ -53,7 +64,6 @@ class BookingForm extends Component{
                 ret.push(arr1[i].name + ", ");
             }
        }
-       console.log(ret);
      return ret;
     };
 
