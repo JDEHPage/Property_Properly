@@ -13,8 +13,21 @@
 	box-shadow: 5px 5px 7px #eee;
 }
 
+.logo {
+height: 45px;
+width: auto;
+margin-right: 5px;
+}
+
 .header h1 {
 margin: 0;
+}
+
+.brand {
+display: flex;
+justify-content: flex-start;
+align-items: center;
+width: 32%;
 }
 
 nav ul {
@@ -29,10 +42,13 @@ margin-left: 30px;
 }
 
 nav ul li a {
-padding: 16px 10px;
+font-size: 0.75em;
+padding: 18px 10px;
 text-decoration: none;
 text-transform: uppercase;
 color: #000;
+background-color: transparent;
+transition: background-color 400ms ease, color 400ms ease;
 }
 
 nav ul li a:hover,

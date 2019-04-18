@@ -5,7 +5,11 @@ import './NavBar.css';
 const NavBar = () => (
 	<React.Fragment>
 	<section className="header">
-		<h1>Property Properly</h1>
+		<div className="brand">
+			<img src="/img/PropertyProperly.png" alt="Property Properly logo" className="logo"/>
+			<h1>Property Properly</h1>
+		</div>
+		
 		<nav>
 		  <ul>
 		    <li>
@@ -26,6 +30,8 @@ const NavBar = () => (
 		  </ul>
 		</nav>
 	</section>
+
+
 	</React.Fragment>
 );
 

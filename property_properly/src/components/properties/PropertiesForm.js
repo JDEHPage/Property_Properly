@@ -33,7 +33,7 @@ class PropertiesForm extends Component{
 
     render(){
       return(
-        <>
+        <React.Fragment>
         <form onSubmit= {this.handleSubmit}>
         <label htmlFor="name">Property Name </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
@@ -43,7 +43,7 @@ class PropertiesForm extends Component{
         <ul>
           {this.allProperties()}
         </ul>
-        </>
+        </React.Fragment>
       );
     }
   }

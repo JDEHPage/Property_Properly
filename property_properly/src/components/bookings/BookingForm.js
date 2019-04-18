@@ -68,8 +68,6 @@ class BookingForm extends Component{
      return ret;
     };
 
-
-
 	handleSubmit(event){
 		event.preventDefault();
 		console.log("clicked the Submit Booking button");

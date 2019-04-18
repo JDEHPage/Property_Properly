@@ -26,7 +26,7 @@ public abstract class Booking {
 
     @JsonIgnoreProperties("bookings")
     @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "bookings_bookableItems",
             joinColumns = {@JoinColumn( name = "booking_id", updatable = false)},
