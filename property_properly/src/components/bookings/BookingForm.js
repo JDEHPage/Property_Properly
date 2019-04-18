@@ -52,7 +52,6 @@ class BookingForm extends Component{
 			} else {
 				this.setState({success_message: "New booking created"});
 				this.setState({error_message: ""});
-
 			}
 		})
 
@@ -88,31 +87,31 @@ class BookingForm extends Component{
 					handleChange={this.handleChange}
 					handleNewCustomer={this.handleNewCustomer}/>
 
-				</CSSTransitionGroup>
+				// </CSSTransitionGroup>
 
 				<form onSubmit= {this.handleSubmit}>
-					<CSSTransitionGroup
-					transitionName="booking-stepOne"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
+					// <CSSTransitionGroup
+					// transitionName="booking-stepOne"
+					// transitionAppear={true}
+		      // transitionAppearTimeout={500}
+		      // transitionEnter={false}
+		      // transitionLeave={true}
+					// transitionLeaveTimeout={300}>
 
 					<FormStepOne
 						handleChange={this.handleChange}
 						handleCheckboxChange={this.handleCheckboxChange}
 						bookableItems={this.props.bookableItems}/>
 
-					</CSSTransitionGroup>
-
-					<CSSTransitionGroup
-					transitionName="booking-stepThree"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
+					// </CSSTransitionGroup>
+					//
+					// <CSSTransitionGroup
+					// transitionName="booking-stepThree"
+					// transitionAppear={true}
+		      // transitionAppearTimeout={500}
+		      // transitionEnter={false}
+		      // transitionLeave={true}
+					// transitionLeaveTimeout={300}>
 
 					<FormStepThree handleChange={this.handleChange}/>
 
