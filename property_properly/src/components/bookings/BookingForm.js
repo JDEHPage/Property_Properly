@@ -22,14 +22,10 @@ class BookingForm extends Component{
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
-<<<<<<< HEAD
-		this.show = this.show.bind(this);
     this.displayCheckboxChange = this.displayCheckboxChange.bind(this);
-=======
 		this.showNext = this.showNext.bind(this);
 		this.showPrev = this.showPrev.bind(this);
 		this.stepThreePrev = this.stepThreePrev.bind(this);
->>>>>>> develop
 	}
 
 	handleNewCustomer(newCustomer){

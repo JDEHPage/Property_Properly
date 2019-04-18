@@ -15,9 +15,7 @@ const FormStepOne = (props) => {
 			const id = `cust${index}`;
 			return (
 				<span key={index}>
-
-
-				<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} default Checked={this.state.chkbox} onChange={handleCheckboxChange}/>
+				<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={handleCheckboxChange}/>
 				<label htmlFor={id} >{item.name} </label>
 				</span>
 			)
