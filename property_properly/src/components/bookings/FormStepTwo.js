@@ -15,27 +15,38 @@ const FormStepTwo = (props) => {
 
 	const stepTwoNext = (event) => {
 		event.preventDefault();
-		props.showNext(event.target.parentNode.id)
+
+		let stepTwoDiv = document.getElementById("stepTwo");
+		let stepThreeDiv = document.getElementById("stepThree");
+
+		stepTwoDiv.style.cssText="opacity: 0; height:0;";
+		stepThreeDiv.style.cssText="opacity: 1; height:300px;";
 	}
 
 	const stepTwoPrev = (event) => {
 		event.preventDefault();
-		props.showPrev(event.target.parentNode.id)
+		let stepOneDiv = document.getElementById("stepOne");
+		let stepTwoDiv = document.getElementById("stepTwo");
+
+		stepTwoDiv.style.cssText="opacity: 0;  height:0;";
+		stepOneDiv.style.cssText="opacity: 1;  height:300px;";
 	}
 
 	return(
 		<div id="stepTwo">
-			<label htmlFor="customer">Customer</label>
-			<select name="customer" id="customer" defaultValue onChange={handleCustomerChange}>
-				<option value="" readOnly>Pick a A Customer...</option>
-				{customerlist(props.customers)}
-			</select>
+			<label id="existing-customer" htmlFor="customer">Current Customer: &nbsp;
+				<select name="customer" id="customer" defaultValue onChange={handleCustomerChange}>
+					<option value="" readOnly>Pick a Customer...</option>
+					{customerlist(props.customers)}
+				</select>
+			</label>
 
 			<CustomerForm handleNewCustomer={props.handleNewCustomer}/>
 
-			<button className="prev" onClick={stepTwoPrev}> &lt; Previous </button>
-			<button className="next" onClick={stepTwoNext}>Next &gt; </button>
-
+			<div className="nav-btns">
+				<button className="prev" onClick={stepTwoPrev}> &lt;&lt; </button>
+				<button className="next" onClick={stepTwoNext}> &gt;&gt; </button>
+			</div>
 		</div>
 	)
 

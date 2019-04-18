@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { CSSTransitionGroup } from 'react-transition-group';
 import Request from "../../helpers/request"
 import FormStepOne from './FormStepOne.js'
 import FormStepTwo from './FormStepTwo.js';
+import FormStepThree from './FormStepThree.js';
 import './BookingForm.css';
 
 
@@ -13,18 +15,12 @@ class BookingForm extends Component{
 			endDate: "",
 			notes: "",
 			bookableItems: [],
-			customer: "",
-			stepOne: true,
-			stepTwo: false,
-			stepThree: false
+			customer: ""
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
-		this.showNext = this.showNext.bind(this);
-		this.showPrev = this.showPrev.bind(this);
-		this.stepThreePrev = this.stepThreePrev.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
@@ -49,44 +45,9 @@ class BookingForm extends Component{
 		})
 	}
 
-	showNext(currentStep){
-		let stepOneDiv = document.getElementById("stepOne");
-		let stepTwoDiv = document.getElementById("stepTwo");
-		let stepThreeDiv = document.getElementById("stepThree");
-
-		if(currentStep === 'stepOne'){
-			this.setState({stepOne: false, stepTwo: true, stepThree: false});
-			stepOneDiv.style.cssText="opacity: 0; display:none;";
-			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
-		} else {
-			this.setState({stepOne: false, stepTwo: false, stepThree: true});
-			stepTwoDiv.style.cssText="opacity: 0; display:none;";
-			stepThreeDiv.style.cssText="opacity: 1; display:flex;";
-		}
-	}
-
-	showPrev(currentStep){
-		let stepOneDiv = document.getElementById("stepOne");
-		let stepTwoDiv = document.getElementById("stepTwo");
-		let stepThreeDiv = document.getElementById("stepThree");
-
-		if(currentStep === 'stepTwo'){
-			stepTwoDiv.style.cssText="opacity: 0; display:none;";
-			stepOneDiv.style.cssText="opacity: 1; display:flex;";
-		} else {
-			stepThreeDiv.style.cssText="opacity: 0; display:none;";
-			stepTwoDiv.style.cssText="opacity: 1; display:flex;";
-		}
-	}
-
-	stepThreePrev(event){
-		event.preventDefault();
-		this.showPrev("stepThree")
-	}
-
 	render(){
 		return(
-			<section id="new-booking-form">
+			<React.Fragment>
 			<h3>Add a New Booking</h3>
 
 			<div className="current-selection">
@@ -97,31 +58,55 @@ class BookingForm extends Component{
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
-			<FormStepTwo
-				bookableItems={this.props.bookableItems}
-				customers={this.props.customers}
-				showNext={this.showNext}
-				showPrev={this.showPrev}
-				handleChange={this.handleChange}
-				handleNewCustomer={this.handleNewCustomer}/>
+			<section id="new-booking-form">
 
-			<form onSubmit= {this.handleSubmit}>
-				<FormStepOne
+				<CSSTransitionGroup
+				transitionName="booking-stepTwo"
+				transitionAppear={true}
+	      transitionAppearTimeout={500}
+	      transitionEnter={false}
+	      transitionLeave={true}
+				transitionLeaveTimeout={300}>
+
+				<FormStepTwo
+					customers={this.props.customers}
 					handleChange={this.handleChange}
-					handleCheckboxChange={this.handleCheckboxChange}
-					showNext={this.showNext}
-					bookableItems={this.props.bookableItems}/>
+					handleNewCustomer={this.handleNewCustomer}/>
 
-				<div id="stepThree">
-					<label htmlFor="notes">Notes </label>
-					<textarea name="notes" id="notes" cols="30" rows="10" onChange={this.handleChange}></textarea >
-					<button className="prev" onClick={this.stepThreePrev}> &lt; Previous </button>
-					<button type="submit">Save</button>
-				</div>
+				</CSSTransitionGroup>
 
-			</form>
+				<form onSubmit= {this.handleSubmit}>
+					<CSSTransitionGroup
+					transitionName="booking-stepOne"
+					transitionAppear={true}
+		      transitionAppearTimeout={500}
+		      transitionEnter={false}
+		      transitionLeave={true}
+					transitionLeaveTimeout={300}>
+
+					<FormStepOne
+						handleChange={this.handleChange}
+						handleCheckboxChange={this.handleCheckboxChange}
+						bookableItems={this.props.bookableItems}/>
+
+					</CSSTransitionGroup>
+
+					<CSSTransitionGroup
+					transitionName="booking-stepThree"
+					transitionAppear={true}
+		      transitionAppearTimeout={500}
+		      transitionEnter={false}
+		      transitionLeave={true}
+					transitionLeaveTimeout={300}>
+
+					<FormStepThree handleChange={this.handleChange}/>
+
+					</CSSTransitionGroup>
+
+				</form>
 
 			</section>
+			</React.Fragment>
 		);
 	}
 }

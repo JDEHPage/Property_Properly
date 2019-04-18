@@ -42,7 +42,7 @@ class CustomerForm extends Component{
 
     render(){
       return(
-        <form onSubmit= {this.handleSubmit}>
+        <form id="new-customer-form" onSubmit= {this.handleSubmit}>
         <label htmlFor="name">Name </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
 
@@ -55,7 +55,7 @@ class CustomerForm extends Component{
         <label htmlFor="address">Address </label>
         <input type = "text" id="address" name="address" onChange={this.handleChange}/>
 
-        <button type="submit">Save</button>
+        <button type="submit">Create Customer</button>
         </form>
       );
     }

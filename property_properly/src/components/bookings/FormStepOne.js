@@ -25,18 +25,23 @@ const FormStepOne = (props) => {
 
 	const stepOneNext = (event) => {
 		event.preventDefault();
-		props.showNext(event.target.parentNode.id)
+
+		let stepOneDiv = document.getElementById("stepOne");
+		let stepTwoDiv = document.getElementById("stepTwo");
+
+		stepOneDiv.style.cssText="opacity: 0; height:0;";
+		stepTwoDiv.style.cssText="opacity: 1; height: 300px;";
 	}
 
 	return(
 		<div id="stepOne">
 
-		<label htmlFor="startDate">Start Date:
-		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange}/>
+		<label htmlFor="startDate">Start Date: &nbsp;
+		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange} required/>
 		</label>
 
-		<label htmlFor="endDate">End Date:
-		<input type = "date" id="endDate" name="endDate" onChange={handleDateChange}/>
+		<label htmlFor="endDate">End Date: &nbsp;
+		<input type = "date" id="endDate" name="endDate" onChange={handleDateChange} required/>
 		</label>
 
 		<fieldset >
@@ -44,7 +49,9 @@ const FormStepOne = (props) => {
 			{itemlist(props.bookableItems)}
 		</fieldset>
 
-		<button className="next" onClick={stepOneNext}>Next &gt; </button>
+		<div className="nav-btns">
+			<button className="next" onClick={stepOneNext}> &gt;&gt; </button>
+		</div>
 
 		</div>
 	)
