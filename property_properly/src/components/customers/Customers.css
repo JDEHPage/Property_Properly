@@ -23,3 +23,9 @@ width:auto;
 .arrows img:hover {
 cursor: pointer;
 }
+
+.delete-btn {
+border: 1px solid #ccc;
+font-size: 0.8em;
+margin: 0;
+}

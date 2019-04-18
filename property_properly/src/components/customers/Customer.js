@@ -1,9 +1,18 @@
 import React from 'react';
+import Request from '../../helpers/request';
 
 const Customer = ( { customer } ) => {
 	const numBookings = customer.bookings.length;
 	const mobile = customer.mobileNumber || 'not supplied';
-	
+
+	const deleteCustomer = () => {
+		const request = new Request();
+		const url = `/api/customers/${customer.id}`
+		request.delete(url).then(() => {
+			window.location = "/customers"
+		})
+	}
+
 	return(
 		<tr>
 		<td>{customer.id}</td>
@@ -14,6 +23,7 @@ const Customer = ( { customer } ) => {
 		</td>
 		<td>{mobile}</td>
 		<td>{numBookings}</td>
+		<td><button className="delete-btn" onClick={deleteCustomer}>Delete</button></td>
 		</tr>
 	);
 }

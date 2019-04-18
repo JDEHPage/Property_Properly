@@ -1,4 +1,5 @@
 import React from 'react';
+import Request from '../../helpers/request';
 
 const Booking = ( { booking } ) => {
 
@@ -23,6 +24,14 @@ const Booking = ( { booking } ) => {
 
 	const allRoomsBooked = booking.bookableItems.map((item)=>{ return item.name}).join(', ');
 
+	const deleteBooking = () => {
+		const request = new Request();
+		const url = `/api/customerBookings/${booking.id}`
+		request.delete(url).then(() => {
+			window.location = "/bookings"
+		})
+	}
+
 	return (
 		<tr>
 		<td>{booking.id}</td>
@@ -32,6 +41,7 @@ const Booking = ( { booking } ) => {
 		<td>{booking.customer.name}</td>
 		<td>{allRoomsBooked}</td>
 		<td>£{calculateTotalPrice(booking)}</td>
+		<td><button className="delete-btn" onClick={deleteBooking}>Delete</button></td>
 		</tr>
 	);
 }

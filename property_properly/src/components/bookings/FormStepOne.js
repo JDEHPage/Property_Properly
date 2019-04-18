@@ -23,6 +23,8 @@ const FormStepOne = (props) => {
 		return result;
 	}
 
+
+
 	const stepOneNext = (event) => {
 		event.preventDefault();
 
@@ -50,7 +52,7 @@ const FormStepOne = (props) => {
 		</fieldset>
 
 		<div className="nav-btns">
-			<button className="next" onClick={stepOneNext}> &gt;&gt; </button>
+			<button className="next" onClick={stepOneNext} disabled> &gt;&gt; </button>
 		</div>
 
 		</div>
