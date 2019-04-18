@@ -24,6 +24,10 @@ class BookingForm extends Component{
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
+    this.displayCheckboxChange = this.displayCheckboxChange.bind(this);
+		this.showNext = this.showNext.bind(this);
+		this.showPrev = this.showPrev.bind(this);
+		this.stepThreePrev = this.stepThreePrev.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
@@ -35,10 +39,39 @@ class BookingForm extends Component{
 	}
 
 	handleCheckboxChange(event){
-		var newArray = this.state.bookableItems.slice();
-		newArray.push(event.target.value);
-		this.setState({bookableItems:newArray})
-	}
+    const stateItems = this.state.bookableItems;
+    if (event.target.checked === true) {
+      var newArray1 = stateItems.slice();
+  		newArray1.push(event.target.value);
+  		this.setState({bookableItems:newArray1})
+
+      this.displayCheckboxChange()
+    } else {
+      for( var i = 0; i < stateItems.length; i++){
+        if ( stateItems[i] === event.target.value) {
+          stateItems.splice(i, 1,);
+          var newArray2 = stateItems;
+          this.setState({bookableItems:newArray2})
+          }
+        }
+      }
+	   }
+
+  displayCheckboxChange(){
+    const arr1 = this.props.bookableItems;
+    const arr2 = this.state.bookableItems;
+    var ret = [];
+    arr1.sort();
+    arr2.sort();
+        for(var i = 0; i < arr1.length; i += 1) {
+            if(arr2.indexOf(arr1[i]._links.self.href) > -1){
+                ret.push(arr1[i].name + ", ");
+            }
+       }
+     return ret;
+    };
+
+
 
 	handleSubmit(event){
 		event.preventDefault();
@@ -65,7 +98,7 @@ class BookingForm extends Component{
 			<div className="current-selection">
 				<p><strong>Start Date:</strong> {this.state.startDate}</p>
 				<p><strong>End Date:</strong> {this.state.endDate}</p>
-				<p><strong>Room/s:</strong> {this.state.bookableItems}</p>
+				<p><strong>Room/s:</strong> {this.displayCheckboxChange()} </p>
 				<p><strong>Customer:</strong> {this.state.customer}</p>
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
