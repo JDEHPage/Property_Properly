@@ -5,12 +5,20 @@ margin-bottom: 20px;
 }
 
 .notifications {
-color: #f00;
 font-weight: 900;
 padding: 10px;
-background-color: #FFDCDC;
 margin-bottom: 20px;
 text-transform: uppercase;
+}
+
+.notifications .error {
+color: #f00;
+background-color: #FFDCDC;
+}
+
+.notifications .success {
+color: #000;
+background-color: #DFF69A;
 }
 
 #new-booking-form {

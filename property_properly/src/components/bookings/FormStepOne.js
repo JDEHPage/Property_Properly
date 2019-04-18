@@ -37,11 +37,11 @@ const FormStepOne = (props) => {
 		<div id="stepOne">
 
 		<label htmlFor="startDate">Start Date: &nbsp;
-		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange} required/>
+		<input type = "date" id="startDate" name="startDate" onChange={handleDateChange}/>
 		</label>
 
 		<label htmlFor="endDate">End Date: &nbsp;
-		<input type = "date" id="endDate" name="endDate" onChange={handleDateChange} required/>
+		<input type = "date" id="endDate" name="endDate" onChange={handleDateChange}/>
 		</label>
 
 		<fieldset >

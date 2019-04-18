@@ -15,8 +15,11 @@ class BookingForm extends Component{
 			endDate: "",
 			notes: "",
 			bookableItems: [],
-			customer: ""
+			customer: "",
+			error_message: "",
+			success_message: ""
 		}
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,10 +42,20 @@ class BookingForm extends Component{
 
 	handleSubmit(event){
 		event.preventDefault();
+		console.log("clicked the Submit Booking button");
 		const request = new Request();
-		request.post('/api/customerBookings', this.state).then(() => {
-			window.location = '/'
+		request.post('/api/customerBookings', this.state)
+		.then((res) => {
+			if(res.status === 409){
+				this.setState({error_message: "Please make sure that a Start Date, End Date, Room and Customer have been selected before saving the new booking."});
+				this.setState({success_message: ""});
+			} else {
+				this.setState({success_message: "New booking created"});
+				this.setState({error_message: ""});
+
+			}
 		})
+
 	}
 
 	render(){
@@ -58,7 +71,7 @@ class BookingForm extends Component{
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
-			<div className="notifications">hello</div>
+			<div className="notifications"><span className="error">{this.state.error_message}</span><span className="success">{this.state.success_message}</span></div>
 
 			<section id="new-booking-form">
 
