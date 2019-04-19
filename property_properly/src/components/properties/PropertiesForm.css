@@ -1,0 +1,12 @@
+.property-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+
+.property-list {
+  padding: 0px;
+  background-color: #eee;
+  width: 50%;
+}

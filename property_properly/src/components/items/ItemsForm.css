@@ -1,0 +1,19 @@
+.item-type-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+}
+
+.allitems-list {
+  padding-left: 0px;
+  background-color: #eee;
+  width: 50%;
+}
+
+.types-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+}
