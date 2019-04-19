@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 const FormStepOne = (props) => {
 
@@ -23,7 +23,18 @@ const FormStepOne = (props) => {
 		return result;
 	}
 
+	const disabled = () => {
+		const startDate = document.getElementById('startDate');
+		// const endDate = document.getElementById('endDate');
+		// const rooms = document.querySelectorAll('[type="checkbox"]');
 
+		console.log(startDate.value);
+		if (startDate.value !== ""){
+			return false
+		} else {
+			return true
+		}
+	}
 
 	const stepOneNext = (event) => {
 		event.preventDefault();
@@ -52,7 +63,7 @@ const FormStepOne = (props) => {
 		</fieldset>
 
 		<div className="nav-btns">
-			<button className="next" onClick={stepOneNext} disabled> &gt;&gt; </button>
+			<button className="next" onClick={stepOneNext} disabled={disabled}> &gt;&gt; </button>
 		</div>
 
 		</div>
