@@ -25,14 +25,20 @@ class BookingForm extends Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
     this.displayCheckboxChange = this.displayCheckboxChange.bind(this);
+		this.displayCustomerChange = this.displayCustomerChange.bind(this);
+		// this.displayNewCustomer = this.displayNewCustomer.bind(this);
+		// this.setCustomer = this.setCustomer.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
 		this.setState({customer: newCustomer._links.self.href})
+		// this.displayNewCustomer(newCustomer)
+		this.displayCustomerChange()
 	}
 
 	handleChange(event){
 		this.setState({[event.target.name]: event.target.value})
+		this.displayCustomerChange()
 	}
 
 	handleCheckboxChange(event){
@@ -68,6 +74,42 @@ class BookingForm extends Component{
      return ret;
     };
 
+
+		displayCustomerChange(){
+			const arr1 = this.props.customers;
+	    const name = this.state.customer;
+	    var ret = "";
+	    arr1.sort();
+	        for(var i = 0; i < arr1.length; i += 1) {
+	            if(name === arr1[i]._links.self.href){
+	                ret = arr1[i].name;
+	            }
+	       }
+				 // this.setCustomer(ret)
+	     // return ret;
+			 if (ret !== "") {
+			 	return ret;
+			} else {
+				return "New Customer";
+			}
+	    };
+		//
+		//
+		// 	displayNewCustomer(newCustomer){
+		// 		var ret = newCustomer.name;
+		// 		return ret
+		// 	}
+		//
+		// 	setCustomer(){
+		// 		if (this.displayNewCustomer() === !"") {
+		// 			return this.displayNewCustomer()
+		// 		}
+		// 		// var name = ret
+		// 		// return name
+		// 	}
+
+
+
 	handleSubmit(event){
 		event.preventDefault();
 		console.log("clicked the Submit Booking button");
@@ -94,7 +136,7 @@ class BookingForm extends Component{
 				<p><strong>Start Date:</strong> {this.state.startDate}</p>
 				<p><strong>End Date:</strong> {this.state.endDate}</p>
 				<p><strong>Room/s:</strong> {this.displayCheckboxChange()} </p>
-				<p><strong>Customer:</strong> {this.state.customer}</p>
+				<p><strong>Customer:</strong> {this.displayCustomerChange()}</p>
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 

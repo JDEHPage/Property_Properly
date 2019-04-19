@@ -41,11 +41,8 @@ const Booking = ( { booking } ) => {
 		<td>{booking.customer.name}</td>
 		<td>{allRoomsBooked}</td>
 		<td>£{calculateTotalPrice(booking)}</td>
-<<<<<<< HEAD
-		
-=======
+
 		<td><button className="delete-btn" onClick={deleteBooking}>Delete</button></td>
->>>>>>> c1ccfe46e4f6429ee5a8a6ff1ae3d849ea669799
 		</tr>
 	);
 }
