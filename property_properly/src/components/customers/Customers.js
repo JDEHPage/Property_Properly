@@ -3,6 +3,7 @@ import Customer from './Customer.js';
 import './Customers.css';
 
 const Customers = ( {customers} ) => {
+
 	customers.sort(function(a,b){
 		const nameA = a.name.toUpperCase();
   	const nameB = b.name.toUpperCase();
@@ -16,17 +17,14 @@ const Customers = ( {customers} ) => {
   	return 0;
 	});
 
-	const allCustomers = customers.map((customer, index) => {
-		return <Customer key={index} customer={customer} />
-	});
-
-	const arrows = () => {
-		return(
-			<span className="arrows">
-				<img src="../../img/arrow_up.png" alt="arrow up"/>
-				<img src="../../img/arrow_down.png" alt="arrow up"/>
-			</span>
-		);
+	const allCustomers = () => {
+		if(customers){
+		return customers.map((customer, index) => {
+			return <Customer key={index} customer={customer} />
+		});
+		} else {
+			return <tr><td colSpan="6">No customers exist yet.</td></tr>
+		}
 	}
 
 	return(
@@ -36,16 +34,17 @@ const Customers = ( {customers} ) => {
 		<table className="customers-table" cellPadding="10">
 			<thead>
 				<tr>
-					<th id="id">ID {arrows()}</th>
-					<th id="name">Name {arrows()}</th>
+					<th id="id">ID</th>
+					<th id="name">Name</th>
 					<th>Address</th>
 					<th>Email</th>
 					<th>Telephone</th>
 					<th>Num. Bookings</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-			{allCustomers}
+			{allCustomers()}
 			</tbody>
 		</table>
 		</main>

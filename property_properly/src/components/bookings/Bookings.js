@@ -3,9 +3,19 @@ import Booking from './Booking.js';
 import './Bookings.css';
 
 const Bookings = ( { bookings } ) => {
-	const allBookings = bookings.map((booking, index) => {
-		return <Booking key={index} booking={booking} />
-	});
+
+
+	const allBookings = () => {
+
+		if(bookings){
+			return bookings.map((booking, index) => {
+				return <Booking key={index} booking={booking} />
+			});
+		} else {
+			return <tr><td colSpan="8">No bookings exist yet.</td></tr>
+		}
+
+	}
 
 	return (
 		<main>
@@ -21,10 +31,11 @@ const Bookings = ( { bookings } ) => {
 					<th>Customer</th>
 					<th>Room</th>
 					<th>Total Price</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				{allBookings}
+				{allBookings()}
 			</tbody>
 		</table>
 		</main>

@@ -29,10 +29,13 @@ class BookingForm extends Component{
 
 	handleNewCustomer(newCustomer){
 		this.setState({customer: newCustomer._links.self.href})
+		// this.displayNewCustomer(newCustomer)
+		this.displayCustomerChange()
 	}
 
 	handleChange(event){
 		this.setState({[event.target.name]: event.target.value})
+		this.displayCustomerChange()
 	}
 
 	handleCheckboxChange(event){
@@ -69,6 +72,40 @@ class BookingForm extends Component{
     };
 
 
+		displayCustomerChange(){
+			const arr1 = this.props.customers;
+	    const name = this.state.customer;
+	    var ret = "";
+	    arr1.sort();
+	        for(var i = 0; i < arr1.length; i += 1) {
+	            if(name === arr1[i]._links.self.href){
+	                ret = arr1[i].name;
+	            }
+	       }
+				 // this.setCustomer(ret)
+	     // return ret;
+			 if (ret !== "") {
+			 	return ret;
+			} else {
+				return "New Customer";
+			}
+	    };
+		//
+		//
+		// 	displayNewCustomer(newCustomer){
+		// 		var ret = newCustomer.name;
+		// 		return ret
+		// 	}
+		//
+		// 	setCustomer(){
+		// 		if (this.displayNewCustomer() === !"") {
+		// 			return this.displayNewCustomer()
+		// 		}
+		// 		// var name = ret
+		// 		// return name
+		// 	}
+
+
 
 	handleSubmit(event){
 		event.preventDefault();
@@ -96,7 +133,7 @@ class BookingForm extends Component{
 				<p><strong>Start Date:</strong> {this.state.startDate}</p>
 				<p><strong>End Date:</strong> {this.state.endDate}</p>
 				<p><strong>Room/s:</strong> {this.displayCheckboxChange()} </p>
-				<p><strong>Customer:</strong> {this.state.customer}</p>
+				<p><strong>Customer:</strong> {this.displayCustomerChange()}</p>
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
@@ -114,6 +151,7 @@ class BookingForm extends Component{
 
 				<FormStepTwo
 					customers={this.props.customers}
+					customer={this.state.customer}
 					handleChange={this.handleChange}
 					handleNewCustomer={this.handleNewCustomer}/>
 
