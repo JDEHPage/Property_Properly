@@ -112,6 +112,7 @@ class BookingForm extends Component{
 
 				<FormStepTwo
 					customers={this.props.customers}
+					customer={this.state.customer}
 					handleChange={this.handleChange}
 					handleNewCustomer={this.handleNewCustomer}/>
 

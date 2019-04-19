@@ -61,7 +61,7 @@ const FormStepTwo = (props) => {
 
 			<div className="nav-btns">
 				<button className="prev" onClick={stepTwoPrev}> &lt;&lt; </button>
-				<button className="next" onClick={stepTwoNext}> &gt;&gt; </button>
+				<button className="next" onClick={stepTwoNext} disabled={!props.customer}> &gt;&gt; </button>
 			</div>
 		</div>
 	)
