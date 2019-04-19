@@ -21,7 +21,7 @@ class FormStepOne extends Component {
 		if(event.target.name === "startDate"){
 			this.setState({stepCompleted: (event.target.value !== "") && (this.state.endDate !== "") && this.state.roomSelected })
 		} else {
-			this.setState({stepCompleted: (this.state.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })	
+			this.setState({stepCompleted: (this.state.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })
 		}
 		this.props.handleChange(event)
 	}

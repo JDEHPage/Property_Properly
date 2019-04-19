@@ -41,6 +41,7 @@ const Booking = ( { booking } ) => {
 		<td>{booking.customer.name}</td>
 		<td>{allRoomsBooked}</td>
 		<td>£{calculateTotalPrice(booking)}</td>
+
 		<td><button className="delete-btn" onClick={deleteBooking}>Delete</button></td>
 		</tr>
 	);
