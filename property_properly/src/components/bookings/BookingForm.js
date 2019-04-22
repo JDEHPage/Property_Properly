@@ -26,8 +26,6 @@ class BookingForm extends Component{
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
     this.displayCheckboxChange = this.displayCheckboxChange.bind(this);
 		this.displayCustomerChange = this.displayCustomerChange.bind(this);
-		// this.displayNewCustomer = this.displayNewCustomer.bind(this);
-		// this.setCustomer = this.setCustomer.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
@@ -85,30 +83,13 @@ class BookingForm extends Component{
 	                ret = arr1[i].name;
 	            }
 	       }
-				 // this.setCustomer(ret)
-	     // return ret;
+
 			 if (ret !== "") {
 			 	return ret;
 			} else {
 				return "New Customer";
 			}
 	    };
-		//
-		//
-		// 	displayNewCustomer(newCustomer){
-		// 		var ret = newCustomer.name;
-		// 		return ret
-		// 	}
-		//
-		// 	setCustomer(){
-		// 		if (this.displayNewCustomer() === !"") {
-		// 			return this.displayNewCustomer()
-		// 		}
-		// 		// var name = ret
-		// 		// return name
-		// 	}
-
-
 
 	handleSubmit(event){
 		event.preventDefault();
@@ -172,7 +153,9 @@ class BookingForm extends Component{
 					<FormStepOne
 						handleChange={this.handleChange}
 						handleCheckboxChange={this.handleCheckboxChange}
-						bookableItems={this.props.bookableItems}/>
+						bookableItems={this.props.bookableItems}
+						startDate={this.state.startDate}
+						endDate={this.state.endDate}/>
 
 					</CSSTransitionGroup>
 

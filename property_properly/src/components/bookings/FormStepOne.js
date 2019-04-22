@@ -5,8 +5,6 @@ class FormStepOne extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			startDate: '',
-			endDate: '',
 			roomSelected: false,
 			stepCompleted: false
 		}
@@ -17,18 +15,17 @@ class FormStepOne extends Component {
 	}
 
 	handleDateChange(event){
-		this.setState({[event.target.name]: event.target.value})
 		if(event.target.name === "startDate"){
-			this.setState({stepCompleted: (event.target.value !== "") && (this.state.endDate !== "") && this.state.roomSelected })
+			this.setState({stepCompleted: (event.target.value !== "") && (this.props.endDate !== "") && this.state.roomSelected })
 		} else {
-			this.setState({stepCompleted: (this.state.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })
+			this.setState({stepCompleted: (this.props.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })
 		}
 		this.props.handleChange(event)
 	}
 
 	handleCheckboxChange(event){
 		this.setState({roomSelected: event.target.checked})
-		this.setState({stepCompleted: (this.state.startDate !== "") && (this.state.endDate !== "") && event.target.checked })
+		this.setState({stepCompleted: (this.props.startDate !== "") && (this.props.endDate !== "") && event.target.checked })
 
 		this.props.handleCheckboxChange(event)
 	}
