@@ -43,12 +43,6 @@ class Main extends Component{
 			});
 		});
 
-
-		// const prevState = this.state.customers
-		// const newState = [...prevState,newCust ]
-		// his.setState({customers:newState})
-
-
 	}
 
 	render (){

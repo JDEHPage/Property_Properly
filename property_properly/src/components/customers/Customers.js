@@ -18,12 +18,12 @@ const Customers = ( {customers} ) => {
 	});
 
 	const allCustomers = () => {
-		if(customers){
+		if(customers.length > 0){
 		return customers.map((customer, index) => {
 			return <Customer key={index} customer={customer} />
 		});
 		} else {
-			return <tr><td colSpan="6">No customers exist yet.</td></tr>
+			return <tr><td colSpan="7">No customers exist yet.</td></tr>
 		}
 	}
 
