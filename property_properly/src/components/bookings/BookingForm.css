@@ -49,31 +49,23 @@ height: 0;
 opacity: 0;
 }
 
-.booking-stepOne-appear,
-.booking-stepTwo-appear,
-.booking-stepThree-appear {
+.booking-appear {
 	height: 0;
   opacity: 0;
 }
 
-.booking-stepOne-appear.booking-stepOne-appear-active,
-.booking-stepTwo-appear.booking-stepTwo-appear-active,
-.booking-stepThree-appear.booking-stepThree-appear-active {
+.booking-appear.booking-appear-active {
 	height: 350px;
   opacity: 1;
   transition: opacity .5s ease-in, height .5s ease-in;
 }
 
-.booking-stepOne-leave,
-.booking-stepTwo-leave,
-.booking-stepThree-leave {
+.booking-leave {
 	height: 350px;
   opacity: 1;
 }
 
-.booking-stepOne-leave.booking-stepOne-leave-active,
-.booking-stepTwo-leave.booking-stepTwo-leave-active,
-.booking-stepThree-leave.booking-stepThree-leave-active {
+.booking-leave.booking-leave-active {
 	height: 0;
   opacity: 0;
   transition: opacity 300ms ease-in, height 300ms ease-in;

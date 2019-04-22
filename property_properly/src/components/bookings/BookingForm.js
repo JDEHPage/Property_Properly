@@ -126,7 +126,7 @@ class BookingForm extends Component{
 			<section id="new-booking-form">
 
 				<CSSTransitionGroup
-				transitionName="booking-stepTwo"
+				transitionName="booking"
 				transitionAppear={true}
 	      transitionAppearTimeout={500}
 	      transitionEnter={false}
@@ -139,16 +139,7 @@ class BookingForm extends Component{
 					handleChange={this.handleChange}
 					handleNewCustomer={this.handleNewCustomer}/>
 
-				</CSSTransitionGroup>
-
 				<form onSubmit= {this.handleSubmit}>
-					<CSSTransitionGroup
-					transitionName="booking-stepOne"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
 
 					<FormStepOne
 						handleChange={this.handleChange}
@@ -157,21 +148,11 @@ class BookingForm extends Component{
 						startDate={this.state.startDate}
 						endDate={this.state.endDate}/>
 
-					</CSSTransitionGroup>
-
-					<CSSTransitionGroup
-					transitionName="booking-stepThree"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
-
 					<FormStepThree handleChange={this.handleChange}/>
 
-					</CSSTransitionGroup>
-
 				</form>
+
+				</CSSTransitionGroup>
 
 			</section>
 			</React.Fragment>
