@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -52,22 +53,32 @@ public class PropertyProperlyServiceApplicationTests {
 		guestHouse.addBookableItem(room101);
 
 		assertEquals(1, guestHouse.getBookableItems().size());
-//		assertEquals(guestHouse, room101.getProperty());
+		assertNotNull(room101.getProperty());
 	}
 
 	@Test
 	public void canAddPaymentOptionToBookableItem(){
 		Property guest_house = new Property("Guest House");
 		PaymentOption creditCard = new PaymentOption( "credit card");
-		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
 
 		BookableItemType singleRoom = new BookableItemType("Single Room");
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 
 		room101.addPaymentOption(creditCard);
-		room101.addAmenity(ensuiteBathroom);
 
 		assertEquals(1, room101.getPaymentOptions().size());
+	}
+
+	@Test
+	public void canAddAmenityToBookableItem(){
+		Property guest_house = new Property("Guest House");
+		Amenity ensuiteBathroom = new Amenity("Ensuite Bathroom");
+
+		BookableItemType singleRoom = new BookableItemType("Single Room");
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
+
+		room101.addAmenity(ensuiteBathroom);
+
 		assertEquals(1, room101.getAmenities().size());
 	}
 
