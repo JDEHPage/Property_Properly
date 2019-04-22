@@ -16,7 +16,6 @@ class BookingForm extends Component{
 			notes: "",
 			bookableItems: [],
 			customer: "",
-			error_message: "",
 			success_message: ""
 		}
 
@@ -29,9 +28,14 @@ class BookingForm extends Component{
 	}
 
 	handleNewCustomer(newCustomer){
+		// add customer to Booking Form state
 		this.setState({customer: newCustomer._links.self.href})
-		// this.displayNewCustomer(newCustomer)
+
+		// display the new customer in the booking form page
 		this.displayCustomerChange()
+
+		// add the customer to the Main component's customers state
+		this.props.addNewCustomerToState(newCustomer);
 	}
 
 	handleChange(event){
@@ -121,7 +125,7 @@ class BookingForm extends Component{
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
-			<div className="notifications"><span className="error">{this.state.error_message}</span><span className="success">{this.state.success_message}</span></div>
+			<div className="notifications"><span className="success">{this.state.success_message}</span></div>
 
 			<section id="new-booking-form">
 

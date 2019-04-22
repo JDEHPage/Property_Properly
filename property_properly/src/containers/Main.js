@@ -19,6 +19,8 @@ class Main extends Component{
 			properties: [],
 			bookableItemTypes: []
 		}
+
+		this.addNewCustomerToState = this.addNewCustomerToState.bind(this);
 	}
 
 	componentDidMount(){
@@ -45,6 +47,12 @@ class Main extends Component{
 
 	}
 
+	addNewCustomerToState(newCustomer){
+		const currentState = this.state.customers;
+		const newState = currentState.push(newCustomer);
+		this.setState({customers: newState});
+	}
+
 	render (){
 		return(
 			<Router>
@@ -52,7 +60,7 @@ class Main extends Component{
 				<Switch>
 					<Route exact path="/" render={() => {
 						return <FrontDesk bookableItems={this.state.bookableItems}
-						customers={this.state.customers}/>
+						customers={this.state.customers} addNewCustomerToState={this.addNewCustomerToState}/>
 					}} />
 
 					<Route exact path="/bookings" render={() => {
@@ -60,7 +68,7 @@ class Main extends Component{
 					}} />
 
 					<Route exact path="/customers" render={() => {
-						return <Customers customers={this.state.customers} />
+						return <Customers customers={this.state.customers}/>
 					}} />
 
 					<Route exact path="/availability" component={Availability} />
