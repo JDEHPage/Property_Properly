@@ -6,8 +6,10 @@ const FrontDesk = (props) => {
 		return(
 			<main>
 			<h2 className="page-title">Front Desk</h2>
-			<BookingForm bookableItems={props.bookableItems}
-			customers={props.customers} addNewCustomerToState={props.addNewCustomerToState}/>
+			<BookingForm
+				bookableItems={props.bookableItems}
+				customers={props.customers}
+				addNewCustomerToState={props.addNewCustomerToState}/>
 			</main>
 		);
 

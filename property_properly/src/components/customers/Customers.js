@@ -2,9 +2,9 @@ import React from 'react';
 import Customer from './Customer.js';
 import './Customers.css';
 
-const Customers = ( {customers} ) => {
+const Customers = ( props ) => {
 
-	customers.sort(function(a,b){
+	props.customers.sort(function(a,b){
 		const nameA = a.name.toUpperCase();
   	const nameB = b.name.toUpperCase();
   	if (nameA < nameB) {
@@ -18,9 +18,9 @@ const Customers = ( {customers} ) => {
 	});
 
 	const allCustomers = () => {
-		if(customers.length > 0){
-		return customers.map((customer, index) => {
-			return <Customer key={index} customer={customer} />
+		if(props.customers.length > 0){
+		return props.customers.map((customer, index) => {
+			return <Customer key={index} customer={customer} handleDelete={props.handleDelete}/>
 		});
 		} else {
 			return <tr><td colSpan="7">No customers exist yet.</td></tr>

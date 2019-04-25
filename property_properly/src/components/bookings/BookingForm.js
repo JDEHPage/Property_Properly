@@ -81,7 +81,7 @@ class BookingForm extends Component{
 			const arr1 = this.props.customers;
 	    const name = this.state.customer;
 	    var ret = "";
-	    arr1.sort();
+	    // arr1.sort();
 	        for(var i = 0; i < arr1.length; i += 1) {
 	            if(name === arr1[i]._links.self.href){
 	                ret = arr1[i].name;

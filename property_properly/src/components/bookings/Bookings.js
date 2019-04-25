@@ -4,9 +4,7 @@ import './Bookings.css';
 
 const Bookings = ( { bookings } ) => {
 
-
 	const allBookings = () => {
-
 		if(bookings){
 			return bookings.map((booking, index) => {
 				return <Booking key={index} booking={booking} />
@@ -14,7 +12,6 @@ const Bookings = ( { bookings } ) => {
 		} else {
 			return <tr><td colSpan="8">No bookings exist yet.</td></tr>
 		}
-
 	}
 
 	return (

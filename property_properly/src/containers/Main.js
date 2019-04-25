@@ -21,6 +21,7 @@ class Main extends Component{
 		}
 
 		this.addNewCustomerToState = this.addNewCustomerToState.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentDidMount(){
@@ -49,8 +50,22 @@ class Main extends Component{
 
 	addNewCustomerToState(newCustomer){
 		const currentState = this.state.customers;
-		const newState = currentState.push(newCustomer);
+		const newState = [...currentState, newCustomer];
 		this.setState({customers: newState});
+	}
+
+	handleDelete(objectName, id){
+		const request = new Request();
+		const url = `/api/${objectName}/${id}`
+		request.delete(url)
+
+
+		//remove from state
+		const prevState = this.state[objectName];
+		const objectToDelete = prevState.find((ob) => { return ob.id === id })
+		const index = prevState.indexOf(objectToDelete)
+		prevState.splice(index, 1)
+		this.setState({customers: prevState});
 	}
 
 	render (){
@@ -68,7 +83,7 @@ class Main extends Component{
 					}} />
 
 					<Route exact path="/customers" render={() => {
-						return <Customers customers={this.state.customers}/>
+						return <Customers customers={this.state.customers} handleDelete={this.handleDelete}/>
 					}} />
 
 					<Route exact path="/availability" component={Availability} />
