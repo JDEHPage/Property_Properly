@@ -11,11 +11,30 @@ class PropertiesForm extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allProperties = this.allProperties.bind(this);
+    this.deleteProperty = this.deleteProperty.bind(this);
   }
 
   allProperties(){return this.props.properties.map((property, index) => {
-      return <li key={index}>{property.name}</li>
+    return(
+
+      <span key={index}>
+          <li key={index}>{property.name}</li>
+          <button className="delete-btn" onClick={this.deleteProperty()} value={property.id}>Delete</button>
+      </span>
+
+    )
+
     });}
+
+
+
+    deleteProperty(id){
+  		const request = new Request();
+  		const url = `/api/properties/${id}`
+  		request.delete(url).then(() => {
+  			window.location = "/admin"
+  		})
+  	}
 
   // function allRoomsBooked(){
   //   booking.bookableItems.map((item)=>{ return item.name}).join(', ');}

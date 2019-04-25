@@ -7,9 +7,9 @@ const NavBar = () => (
 	<section className="header">
 		<div className="brand">
 			<img src="/img/PropertyProperly.png" alt="Property Properly logo" className="logo"/>
-			<h1>Property Properly</h1>
+			
 		</div>
-		
+
 		<nav>
 		  <ul>
 		    <li>
