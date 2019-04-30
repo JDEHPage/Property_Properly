@@ -53,16 +53,25 @@ class FormStepOne extends Component {
 		stepTwoDiv.style.cssText="opacity: 1; height: 350px;";
 	}
 
+	todayAsString(){
+		let today = new Date();
+		let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
+		let dateFormatter = new Intl.DateTimeFormat('en-GB', options);
+		// return dateFormatter.format(today).replace(/\//g,'-');
+		let dateString = dateFormatter.format(today);
+		return dateString.substr(6, 4)+"-"+dateString.substr(3, 2)+"-"+dateString.substr(0, 2);
+	}
+
 	render(){
 	return(
 		<div id="stepOne">
 
 		<label htmlFor="startDate">Start Date: &nbsp;
-		<input type = "date" id="startDate" name="startDate" onChange={this.handleDateChange}/>
+		<input type = "date" min={this.todayAsString()} id="startDate" name="startDate" onChange={this.handleDateChange}/>
 		</label>
 
 		<label htmlFor="endDate">End Date: &nbsp;
-		<input type = "date" id="endDate" name="endDate" onChange={this.handleDateChange}/>
+		<input type="date" min={this.todayAsString()} id="endDate" name="endDate" onChange={this.handleDateChange}/>
 		</label>
 
 		<fieldset >
