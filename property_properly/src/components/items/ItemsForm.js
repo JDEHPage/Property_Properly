@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Request from "../../helpers/request"
+import './ItemsForm.css'
 
 
 class ItemsForm extends Component{
@@ -57,7 +58,7 @@ class ItemsForm extends Component{
     render(){
       return(
         <>
-        <form onSubmit= {this.handleSubmit}>
+        <form className="item-type-form" onSubmit= {this.handleSubmit}>
 
         <label htmlFor="property">Associated Property</label>
         <select name="property" id="property" defaultValue onChange={this.handleChange}>
@@ -84,7 +85,7 @@ class ItemsForm extends Component{
 
         <button type="submit">Save</button>
         </form>
-        <ul>
+        <ul className="allitems-list">
           {this.allitems()}
         </ul>
         </>
