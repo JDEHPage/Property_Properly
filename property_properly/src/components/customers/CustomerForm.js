@@ -28,16 +28,7 @@ class CustomerForm extends Component{
     const request = new Request();
     request.post('/api/customers', this.state)
     .then((response) => response.json())
-    .then((customer) => {this.handleNewCustomer(customer)
-    })
-
-
-
-    //   customer => {this.handleNewCustomer(customer)
-    //   console.log(customer);
-    // }
-      // () => {window.location = '/'}
-
+    .then((customer) => {this.handleNewCustomer(customer)})
   }
 
     render(){

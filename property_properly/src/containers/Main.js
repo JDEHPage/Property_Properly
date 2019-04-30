@@ -19,6 +19,9 @@ class Main extends Component{
 			properties: [],
 			bookableItemTypes: []
 		}
+
+		this.addNewCustomerToState = this.addNewCustomerToState.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentDidMount(){
@@ -43,12 +46,26 @@ class Main extends Component{
 			});
 		});
 
+	}
 
-		// const prevState = this.state.customers
-		// const newState = [...prevState,newCust ]
-		// his.setState({customers:newState})
+	addNewCustomerToState(newCustomer){
+		const currentState = this.state.customers;
+		const newState = [...currentState, newCustomer];
+		this.setState({customers: newState});
+	}
+
+	handleDelete(objectName, id){
+		const request = new Request();
+		const url = `/api/${objectName}/${id}`
+		request.delete(url)
 
 
+		//remove from state
+		const prevState = this.state[objectName];
+		const objectToDelete = prevState.find((ob) => { return ob.id === id })
+		const index = prevState.indexOf(objectToDelete)
+		prevState.splice(index, 1)
+		this.setState({customers: prevState});
 	}
 
 	render (){
@@ -58,7 +75,7 @@ class Main extends Component{
 				<Switch>
 					<Route exact path="/" render={() => {
 						return <FrontDesk bookableItems={this.state.bookableItems}
-						customers={this.state.customers}/>
+						customers={this.state.customers} addNewCustomerToState={this.addNewCustomerToState}/>
 					}} />
 
 					<Route exact path="/bookings" render={() => {
@@ -66,7 +83,7 @@ class Main extends Component{
 					}} />
 
 					<Route exact path="/customers" render={() => {
-						return <Customers customers={this.state.customers} />
+						return <Customers customers={this.state.customers} handleDelete={this.handleDelete}/>
 					}} />
 
 					<Route exact path="/availability" component={Availability} />

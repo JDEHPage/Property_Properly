@@ -16,7 +16,6 @@ class BookingForm extends Component{
 			notes: "",
 			bookableItems: [],
 			customer: "",
-			error_message: "",
 			success_message: ""
 		}
 
@@ -25,12 +24,18 @@ class BookingForm extends Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleNewCustomer = this.handleNewCustomer.bind(this);
     this.displayCheckboxChange = this.displayCheckboxChange.bind(this);
+		this.displayCustomerChange = this.displayCustomerChange.bind(this);
 	}
 
 	handleNewCustomer(newCustomer){
+		// add customer to Booking Form state
 		this.setState({customer: newCustomer._links.self.href})
-		// this.displayNewCustomer(newCustomer)
+
+		// display the new customer in the booking form page
 		this.displayCustomerChange()
+
+		// add the customer to the Main component's customers state
+		this.props.addNewCustomerToState(newCustomer);
 	}
 
 	handleChange(event){
@@ -76,36 +81,19 @@ class BookingForm extends Component{
 			const arr1 = this.props.customers;
 	    const name = this.state.customer;
 	    var ret = "";
-	    arr1.sort();
+	    // arr1.sort();
 	        for(var i = 0; i < arr1.length; i += 1) {
 	            if(name === arr1[i]._links.self.href){
 	                ret = arr1[i].name;
 	            }
 	       }
-				 // this.setCustomer(ret)
-	     // return ret;
+
 			 if (ret !== "") {
 			 	return ret;
 			} else {
 				return "New Customer";
 			}
 	    };
-		//
-		//
-		// 	displayNewCustomer(newCustomer){
-		// 		var ret = newCustomer.name;
-		// 		return ret
-		// 	}
-		//
-		// 	setCustomer(){
-		// 		if (this.displayNewCustomer() === !"") {
-		// 			return this.displayNewCustomer()
-		// 		}
-		// 		// var name = ret
-		// 		// return name
-		// 	}
-
-
 
 	handleSubmit(event){
 		event.preventDefault();
@@ -137,12 +125,12 @@ class BookingForm extends Component{
 				<p><strong>Notes:</strong> {this.state.notes}</p>
 			</div>
 
-			<div className="notifications"><span className="error">{this.state.error_message}</span><span className="success">{this.state.success_message}</span></div>
+			<div className="notifications"><span className="success">{this.state.success_message}</span></div>
 
 			<section id="new-booking-form">
 
 				<CSSTransitionGroup
-				transitionName="booking-stepTwo"
+				transitionName="booking"
 				transitionAppear={true}
 	      transitionAppearTimeout={500}
 	      transitionEnter={false}
@@ -155,37 +143,20 @@ class BookingForm extends Component{
 					handleChange={this.handleChange}
 					handleNewCustomer={this.handleNewCustomer}/>
 
-				</CSSTransitionGroup>
-
 				<form onSubmit= {this.handleSubmit}>
-					<CSSTransitionGroup
-					transitionName="booking-stepOne"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
 
 					<FormStepOne
 						handleChange={this.handleChange}
 						handleCheckboxChange={this.handleCheckboxChange}
-						bookableItems={this.props.bookableItems}/>
-
-					</CSSTransitionGroup>
-
-					<CSSTransitionGroup
-					transitionName="booking-stepThree"
-					transitionAppear={true}
-		      transitionAppearTimeout={500}
-		      transitionEnter={false}
-		      transitionLeave={true}
-					transitionLeaveTimeout={300}>
+						bookableItems={this.props.bookableItems}
+						startDate={this.state.startDate}
+						endDate={this.state.endDate}/>
 
 					<FormStepThree handleChange={this.handleChange}/>
 
-					</CSSTransitionGroup>
-
 				</form>
+
+				</CSSTransitionGroup>
 
 			</section>
 			</React.Fragment>

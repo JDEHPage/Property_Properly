@@ -5,8 +5,6 @@ class FormStepOne extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			startDate: '',
-			endDate: '',
 			roomSelected: false,
 			stepCompleted: false
 		}
@@ -17,18 +15,17 @@ class FormStepOne extends Component {
 	}
 
 	handleDateChange(event){
-		this.setState({[event.target.name]: event.target.value})
 		if(event.target.name === "startDate"){
-			this.setState({stepCompleted: (event.target.value !== "") && (this.state.endDate !== "") && this.state.roomSelected })
+			this.setState({stepCompleted: (event.target.value !== "") && (this.props.endDate !== "") && this.state.roomSelected })
 		} else {
-			this.setState({stepCompleted: (this.state.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })
+			this.setState({stepCompleted: (this.props.startDate !== "") && (event.target.value !== "") && this.state.roomSelected })
 		}
 		this.props.handleChange(event)
 	}
 
 	handleCheckboxChange(event){
 		this.setState({roomSelected: event.target.checked})
-		this.setState({stepCompleted: (this.state.startDate !== "") && (this.state.endDate !== "") && event.target.checked })
+		this.setState({stepCompleted: (this.props.startDate !== "") && (this.props.endDate !== "") && event.target.checked })
 
 		this.props.handleCheckboxChange(event)
 	}
@@ -56,16 +53,25 @@ class FormStepOne extends Component {
 		stepTwoDiv.style.cssText="opacity: 1; height: 350px;";
 	}
 
+	todayAsString(){
+		let today = new Date();
+		let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
+		let dateFormatter = new Intl.DateTimeFormat('en-GB', options);
+		// return dateFormatter.format(today).replace(/\//g,'-');
+		let dateString = dateFormatter.format(today);
+		return dateString.substr(6, 4)+"-"+dateString.substr(3, 2)+"-"+dateString.substr(0, 2);
+	}
+
 	render(){
 	return(
 		<div id="stepOne">
 
 		<label htmlFor="startDate">Start Date: &nbsp;
-		<input type = "date" id="startDate" name="startDate" onChange={this.handleDateChange}/>
+		<input type = "date" min={this.todayAsString()} id="startDate" name="startDate" onChange={this.handleDateChange}/>
 		</label>
 
 		<label htmlFor="endDate">End Date: &nbsp;
-		<input type = "date" id="endDate" name="endDate" onChange={this.handleDateChange}/>
+		<input type="date" min={this.todayAsString()} id="endDate" name="endDate" onChange={this.handleDateChange}/>
 		</label>
 
 		<fieldset >
