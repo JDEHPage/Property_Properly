@@ -6,7 +6,7 @@
 }
 
 .allitems-list {
-  padding-left: 0px;
+	padding: 10px;
   background-color: #eee;
   width: 50%;
   list-style: none;
