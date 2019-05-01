@@ -57,7 +57,7 @@ class ItemsForm extends Component{
     render(){
       return(
         <React.Fragment>
-        <form onSubmit= {this.handleSubmit}>
+        <form className="item-type-form" onSubmit= {this.handleSubmit}>
 
         <label htmlFor="property">Associated Property</label>
         <select name="property" id="property" defaultValue onChange={this.handleChange}>
@@ -84,7 +84,7 @@ class ItemsForm extends Component{
 
         <button type="submit">Save</button>
         </form>
-        <ul>
+        <ul className="allitems-list">
           {this.allitems()}
         </ul>
         </React.Fragment>

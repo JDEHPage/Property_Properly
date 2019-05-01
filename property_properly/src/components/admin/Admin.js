@@ -8,6 +8,7 @@ const Admin = (props) => {
 		return(
 			<main>
 			<h2 className="page-title">Admin Dashboard</h2>
+			<div className="admin-frame">
 			<PropertiesForm properties={props.properties}/>
 
 			<TypesForm bookableItemTypes={props.bookableItemTypes}/>
@@ -15,6 +16,7 @@ const Admin = (props) => {
 			<ItemsForm bookableItems={props.bookableItems}
 			properties={props.properties}
 			bookableItemTypes={props.bookableItemTypes}/>
+			</div>
 			</main>
 		);
 	}

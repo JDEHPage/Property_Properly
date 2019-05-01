@@ -1,5 +1,13 @@
 .types-list {
   background-color: #eee;
   width: 50%;
-  padding-left: 0px
+  padding-left: 0px;
+  list-style: none;
+}
+
+.item-type-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
 }

@@ -1,3 +1,5 @@
 .admin-frame {
+  display: flex;
+  flex-flow: column;
   margin-left: 33%;
 }

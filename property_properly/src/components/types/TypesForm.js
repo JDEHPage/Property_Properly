@@ -34,13 +34,13 @@ class TypesForm extends Component{
     render(){
       return(
         <React.Fragment>
-        <form onSubmit= {this.handleSubmit}>
+        <form className="item-type-form" onSubmit= {this.handleSubmit}>
         <label htmlFor="name">Room Types </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
 
         <button type="submit">Add</button>
         </form>
-        <ul>
+        <ul className="types-list">
           {this.alltypes()}
         </ul>
         </React.Fragment>
