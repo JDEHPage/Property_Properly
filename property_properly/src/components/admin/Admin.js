@@ -2,6 +2,7 @@ import React from 'react';
 import PropertiesForm from '../properties/PropertiesForm.js'
 import TypesForm from '../types/TypesForm.js'
 import ItemsForm from '../items/ItemsForm.js'
+import './Admin.css'
 
 const Admin = (props) => {
 		return(

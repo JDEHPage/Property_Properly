@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Request from "../../helpers/request"
-
+import './PropertiesForm.css'
 
 class PropertiesForm extends Component{
   constructor(props){
@@ -34,13 +34,13 @@ class PropertiesForm extends Component{
     render(){
       return(
         <React.Fragment>
-        <form onSubmit= {this.handleSubmit}>
+        <form onSubmit= {this.handleSubmit} className="property-form">
         <label htmlFor="name">Property Name </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
 
         <button type="submit">Add</button>
         </form>
-        <ul>
+        <ul className="property-list">
           {this.allProperties()}
         </ul>
         </React.Fragment>
