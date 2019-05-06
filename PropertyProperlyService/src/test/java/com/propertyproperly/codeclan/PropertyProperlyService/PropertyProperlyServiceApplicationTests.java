@@ -113,4 +113,18 @@ public class PropertyProperlyServiceApplicationTests {
 		assertEquals(1, room101.getBookings().size());
 	}
 
+	@Test
+	public void bookableItemsStartsWithNoBookings(){
+		Property guest_house = new Property("Guest House");
+		BookableItemType singleRoom = new BookableItemType("Single Room");
+		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
+
+		assertEquals(0, room101.getBookings().size());
+	}
+
+//	@Test
+//	public void bookableItemCanGetBookingsNotInPast(){
+//
+//	}
+
 }

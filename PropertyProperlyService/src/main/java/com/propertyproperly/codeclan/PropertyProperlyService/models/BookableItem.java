@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -164,6 +168,29 @@ public class BookableItem {
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+
+    public List<Booking> getBookingsNotInPast(){
+        ArrayList<Booking> result = new ArrayList<Booking>();
+        List<Booking> allBookings = bookings;
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = new Date();
+
+        // filter all bookings for those with an endDate < today
+        for( Booking booking:allBookings ){
+            Date endDateAsDate = null;
+            try {
+                endDateAsDate = dateFormat.parse( booking.getEndDate() );
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if( endDateAsDate.compareTo( today ) >= 0 ){
+                result.add(booking);
+            }
+        }
+        return result;
     }
 
     public void setBookings(List<Booking> bookings) {
