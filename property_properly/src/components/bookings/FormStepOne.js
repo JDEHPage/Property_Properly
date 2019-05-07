@@ -30,17 +30,36 @@ class FormStepOne extends Component {
 		this.props.handleCheckboxChange(event)
 	}
 
-	itemlist(bookableItems){
-		const result = bookableItems.map((item, index) => {
-			const id = `cust${index}`;
-			return (
-				<span key={index}>
-				<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
-				<label htmlFor={id} >{item.name} </label>
-				</span>
-			)
-		})
-		return result;
+	itemlist(bookableItems, startDate, endDate){
+		console.log(bookableItems);
+		console.log(startDate);
+		console.log(endDate);
+
+		if (startDate !== "" && endDate !== "") {
+			// console.log("Hello I work");
+
+			const result = bookableItems.map((item, index) => {
+				const id = `cust${index}`;
+				const itemBookings = item.bookings.map((item, index) => {
+   				return item
+				})
+				console.log("ItemBookings:", itemBookings);
+
+				// console.log(item);
+
+
+				// return (
+				// 	<span key={index}>
+				// 	<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
+				// 	<label htmlFor={id} >{item.name} </label>
+				// 	</span>
+				// )
+			})
+			return result;
+		}
+
+
+
 	}
 
 	stepOneNext(event){
@@ -76,7 +95,7 @@ class FormStepOne extends Component {
 
 		<fieldset >
 			<legend>Select Rooms</legend>
-			{this.itemlist(this.props.bookableItems)}
+			{this.itemlist(this.props.bookableItems,this.props.startDate, this.props.endDate)}
 		</fieldset>
 
 		<div className="nav-btns">

@@ -8,7 +8,7 @@ const FormStepTwo = (props) => {
 	}
 
 	function customerlist(customers){
-		console.log("Customers",customers);
+		// console.log("Customers",customers);
 		return customers.map((item, index) => {
 			return <option key={index} value={item._links.self.href}>{item.email}</option>
 		})
