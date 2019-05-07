@@ -12,10 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping(value = "/bookableItems")
 public class BookableItemController {
 
     @Autowired
     BookableItemRepository bookableItemRepository;
+
+    @GetMapping( value = "/" )
+    public List<BookableItem> getAllBookableItems(){ return bookableItemRepository.findAll(); }
+
+    @GetMapping( value = "{id}" )
+    public Optional<BookableItem> getSingleBookableItem(@PathVariable Long id){ return bookableItemRepository.findById(id); }
 
 }
