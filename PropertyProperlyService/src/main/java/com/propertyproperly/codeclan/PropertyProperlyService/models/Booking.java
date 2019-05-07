@@ -1,6 +1,7 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.propertyproperly.codeclan.PropertyProperlyService.converters.EndDateStringConverter;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -21,8 +22,9 @@ public abstract class Booking {
     @Column(name = "start_date")
     private String startDate;
 
+    @Convert(converter = EndDateStringConverter.class)
     @Column(name = "end_date")
-    private String endDate;
+    private Date endDate;
 
     @JsonIgnoreProperties("bookings")
     @ManyToMany
@@ -43,7 +45,7 @@ public abstract class Booking {
     @Column(name = "notes")
     private String notes;
 
-    public Booking(String startDate, String endDate) {
+    public Booking(String startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookableItems = new ArrayList<BookableItem>();
@@ -72,11 +74,11 @@ public abstract class Booking {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

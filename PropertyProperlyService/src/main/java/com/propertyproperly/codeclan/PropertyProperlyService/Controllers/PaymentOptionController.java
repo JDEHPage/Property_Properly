@@ -1,4 +1,4 @@
-package com.propertyproperly.codeclan.PropertyProperlyService.Controllers;
+package com.propertyproperly.codeclan.PropertyProperlyService.controllers;
 
 import com.propertyproperly.codeclan.PropertyProperlyService.repositories.PaymentOption.PaymentOptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -174,19 +174,12 @@ public class BookableItem {
         ArrayList<Booking> result = new ArrayList<Booking>();
         List<Booking> allBookings = bookings;
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date today = new Date();
 
         // filter all bookings for those with an endDate < today
         for( Booking booking:allBookings ){
-            Date endDateAsDate = null;
-            try {
-                endDateAsDate = dateFormat.parse( booking.getEndDate() );
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
-            if( endDateAsDate.compareTo( today ) >= 0 ){
+            if( booking.getEndDate().compareTo( today ) >= 0 ){
                 result.add(booking);
             }
         }

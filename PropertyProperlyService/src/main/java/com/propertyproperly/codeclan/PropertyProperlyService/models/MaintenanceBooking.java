@@ -13,7 +13,7 @@ public class MaintenanceBooking extends Booking {
     @Column( name = "type")
     private String type;
 
-    public MaintenanceBooking(String startDate, String endDate, String type) {
+    public MaintenanceBooking(String startDate, Date endDate, String type) {
         super(startDate, endDate);
         this.type = type;
     }

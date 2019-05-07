@@ -15,7 +15,7 @@ public class CustomerBooking extends Booking {
     @JoinColumn( name = "customer_id", nullable = false)
     private Customer customer;
 
-    public CustomerBooking(String startDate, String endDate, Customer customer) {
+    public CustomerBooking(String startDate, Date endDate, Customer customer) {
         super(startDate, endDate);
         this.customer = customer;
     }
