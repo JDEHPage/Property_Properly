@@ -36,25 +36,58 @@ class FormStepOne extends Component {
 		console.log(endDate);
 
 		if (startDate !== "" && endDate !== "") {
-			// console.log("Hello I work");
+			console.log("Hello I work");
 
 			const result = bookableItems.map((item, index) => {
-				const id = `cust${index}`;
-				const itemBookings = item.bookings.map((item, index) => {
-   				return item
+				const id = `room${index}`;
+
+				const itemBookings = item.bookings.map((booking) => {
+					return booking
 				})
-				console.log("ItemBookings:", itemBookings);
+				
+				const passFail = []
 
-				// console.log(item);
+					for (const booking of itemBookings) {
+						if (!(startDate >= booking.startDate && endDate <= booking.endDate)    ) {
+							passFail.push(true)
+						} else {
+							passFail.push(false)
+						}
 
+					}
+				
 
-				// return (
-				// 	<span key={index}>
-				// 	<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
-				// 	<label htmlFor={id} >{item.name} </label>
-				// 	</span>
-				// )
+				
+				console.log(passFail);
+
+				// console.log("Item:", item);
+				
+				// console.log("ItemBookings:", itemBookings);
+
+			// if (passFail.every(true)) {
+			// 	return (
+			// 		<span key={index}>
+			// 		<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
+			// 		<label htmlFor={id} >{item.name} </label>
+			// 		</span>
+			// 	)
+			}
+				
 			})
+
+			// const itemBookings = bookableItems.map((booking) => {
+			// 		return booking.bookings
+			// 	})
+
+
+			// for (const iterator of object) {
+				
+			// }
+			
+			// console.log(itemBookings);
+			
+
+
 			return result;
 		}
 
