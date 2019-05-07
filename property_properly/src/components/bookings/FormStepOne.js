@@ -41,7 +41,7 @@ class FormStepOne extends Component {
 			console.log("Hello I work");
 
 			const result = bookableItems.map((item, index) => {
-				const id = `room${index}`;
+				const id = `item${index}`;
 
 				const itemBookings = item.bookings.map((booking) => {
 					return booking
@@ -53,11 +53,7 @@ class FormStepOne extends Component {
 						console.log(booking.startDate);
 						
 						if (
-							// (startDate >= booking.startDate || startDate < booking.startDate)
-							// 	&& (endDate <= booking.endDate || endDate > booking.endDate) 
-							// 	&& (startDate < booking.endDate)
-								
-								
+						
 							(startDate >= booking.startDate && endDate <= booking.endDate) ||
 							(startDate <= booking.startDate && endDate >= booking.endDate) ||
 							(startDate <= booking.startDate && endDate > booking.endDate) ||
@@ -86,16 +82,19 @@ class FormStepOne extends Component {
 					<label htmlFor={id} >{item.name} </label>
 					</span>
 				)
+			} else {
+				return null
 			}
 			
 			})
-
-			return result;
+				return result;
 		}
 
-
-
 	}
+
+
+
+	
 
 	stepOneNext(event){
 		event.preventDefault();
