@@ -30,6 +30,8 @@ class FormStepOne extends Component {
 		this.props.handleCheckboxChange(event)
 	}
 
+
+	 
 	itemlist(bookableItems, startDate, endDate){
 		console.log(bookableItems);
 		console.log(startDate);
@@ -48,45 +50,45 @@ class FormStepOne extends Component {
 				const passFail = []
 
 					for (const booking of itemBookings) {
-						if (!(startDate >= booking.startDate && endDate <= booking.endDate)    ) {
-							passFail.push(true)
-						} else {
+						console.log(booking.startDate);
+						
+						if (
+							// (startDate >= booking.startDate || startDate < booking.startDate)
+							// 	&& (endDate <= booking.endDate || endDate > booking.endDate) 
+							// 	&& (startDate < booking.endDate)
+								
+								
+							(startDate >= booking.startDate && endDate <= booking.endDate) ||
+							(startDate <= booking.startDate && endDate >= booking.endDate) ||
+							(startDate <= booking.startDate && endDate > booking.endDate) ||
+							(startDate < booking.startDate && endDate >= booking.endDate) ||
+							(startDate >= booking.startDate && startDate < booking.endDate && endDate > booking.endDate) 
+
+						) {
 							passFail.push(false)
+						} else {
+							passFail.push(true)
 						}
-
 					}
-				
-
 				
 				console.log(passFail);
 
-				// console.log("Item:", item);
-				
-				// console.log("ItemBookings:", itemBookings);
-
-			// if (passFail.every(true)) {
-			// 	return (
-			// 		<span key={index}>
-			// 		<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
-			// 		<label htmlFor={id} >{item.name} </label>
-			// 		</span>
-			// 	)
+			const check = passFail.every((item) => {
+				return item === true
+			}) 
+			
+			console.log(check);
+			
+			if (check === true) {
+				return (
+					<span key={index}>
+					<input type="checkbox" name="bookableItems" id={id}  value={item._links.self.href} onChange={this.handleCheckboxChange}/>
+					<label htmlFor={id} >{item.name} </label>
+					</span>
+				)
 			}
-				
+			
 			})
-
-			// const itemBookings = bookableItems.map((booking) => {
-			// 		return booking.bookings
-			// 	})
-
-
-			// for (const iterator of object) {
-				
-			// }
-			
-			// console.log(itemBookings);
-			
-
 
 			return result;
 		}
