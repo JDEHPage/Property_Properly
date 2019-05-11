@@ -7,22 +7,24 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Converter
-public class EndDateStringConverter implements AttributeConverter<Date, String> {
+public class DateStringConverter implements AttributeConverter<Date, String> {
     @Override
     public String convertToDatabaseColumn(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
+        DateFormat s2dbDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        String dateAsString = s2dbDateFormat.format(date);
+        return dateAsString.substring(0,10);
     }
 
     @Override
     public Date convertToEntityAttribute(String dbData) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat db2sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date result = null;
 
         try {
-            result = dateFormat.parse(dbData);
+            result = db2sDateFormat.parse(dbData);
         } catch (ParseException e) {
             e.printStackTrace();
         }

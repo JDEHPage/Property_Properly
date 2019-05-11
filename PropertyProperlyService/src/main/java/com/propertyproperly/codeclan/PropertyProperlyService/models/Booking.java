@@ -1,8 +1,7 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.propertyproperly.codeclan.PropertyProperlyService.converters.EndDateStringConverter;
-import org.hibernate.annotations.Cascade;
+import com.propertyproperly.codeclan.PropertyProperlyService.converters.DateStringConverter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public abstract class Booking {
     @Column(name = "start_date")
     private String startDate;
 
-    @Convert(converter = EndDateStringConverter.class)
+    @Convert(converter = DateStringConverter.class)
     @Column(name = "end_date")
     private Date endDate;
 
