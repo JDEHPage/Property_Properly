@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.propertyproperly.codeclan.PropertyProperlyService.converters.DateStringConverter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public abstract class Booking {
 
     @Convert(converter = DateStringConverter.class)
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @JsonIgnoreProperties("bookings")
     @ManyToMany
@@ -44,7 +45,7 @@ public abstract class Booking {
     @Column(name = "notes")
     private String notes;
 
-    public Booking(String startDate, Date endDate) {
+    public Booking(String startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookableItems = new ArrayList<BookableItem>();
@@ -73,11 +74,11 @@ public abstract class Booking {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

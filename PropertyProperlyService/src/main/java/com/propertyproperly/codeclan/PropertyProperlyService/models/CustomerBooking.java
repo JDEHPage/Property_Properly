@@ -3,7 +3,8 @@ package com.propertyproperly.codeclan.PropertyProperlyService.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+//import java.util.Date;
 
 @Entity
 @Table( name = "customer_bookings")
@@ -15,7 +16,7 @@ public class CustomerBooking extends Booking {
     @JoinColumn( name = "customer_id", nullable = false)
     private Customer customer;
 
-    public CustomerBooking(String startDate, Date endDate, Customer customer) {
+    public CustomerBooking(String startDate, LocalDate endDate, Customer customer) {
         super(startDate, endDate);
         this.customer = customer;
     }

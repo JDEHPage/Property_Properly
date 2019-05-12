@@ -3,32 +3,33 @@ package com.propertyproperly.codeclan.PropertyProperlyService.converters;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+//import java.util.Date;
+//import java.util.Locale;
 
 @Converter
-public class DateStringConverter implements AttributeConverter<Date, String> {
+public class DateStringConverter implements AttributeConverter<LocalDate, String> {
     @Override
-    public String convertToDatabaseColumn(Date date) {
-        DateFormat s2dbDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        String dateAsString = s2dbDateFormat.format(date);
-        return dateAsString.substring(0,10);
+    public String convertToDatabaseColumn(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("en", "UK"));
+//        return dateFormat.format(date);
     }
 
     @Override
-    public Date convertToEntityAttribute(String dbData) {
-        DateFormat db2sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date result = null;
-
-        try {
-            result = db2sDateFormat.parse(dbData);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return result;
+    public LocalDate convertToEntityAttribute(String dbData) {
+        return LocalDate.parse(dbData);
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("en", "UK"));
+//        Date result = null;
+//
+//        try {
+//            result = dateFormat.parse(dbData);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
     }
 }

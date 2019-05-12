@@ -7,8 +7,9 @@ import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -174,7 +175,9 @@ public class BookableItem {
         ArrayList<Booking> result = new ArrayList<Booking>();
         List<Booking> allBookings = bookings;
 
-        Date today = new Date();
+        LocalDate today = LocalDate.now();
+
+//        Date today = new Date();
 
         // filter all bookings for those with an endDate < today
         for( Booking booking:allBookings ){

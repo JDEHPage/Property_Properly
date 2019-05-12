@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -122,14 +123,16 @@ public class PropertyProperlyServiceApplicationTests {
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 //		customerRepository.save(customer1);
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		String dateString = format.format( new Date() );
-		Date endDate = null;
-		try {
-			endDate = format.parse("2019-05-04");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////		String dateString = format.format( new Date() );
+//		Date endDate = null;
+//		try {
+//			endDate = format.parse("2019-05-04");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
+		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		CustomerBooking booking = new CustomerBooking("2019-05-01", endDate, customer1);
 		booking.addBookableItem(room101);
@@ -148,14 +151,16 @@ public class PropertyProperlyServiceApplicationTests {
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 //		bookableItemRepository.save(room101);
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		String dateString = format.format( new Date() );
-		Date endDate = null;
-		try {
-			endDate = format.parse("2019-05-04");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////		String dateString = format.format( new Date() );
+//		Date endDate = null;
+//		try {
+//			endDate = format.parse("2019-05-04");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
+		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		MaintenanceBooking booking2 = new MaintenanceBooking("2019-05-01", endDate, "painting");
 		room101.addBooking(booking2);
@@ -187,14 +192,16 @@ public class PropertyProperlyServiceApplicationTests {
 
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		String dateString = format.format( new Date() );
-		Date endDate = null;
-		try {
-			endDate = format.parse("2019-05-04");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////		String dateString = format.format( new Date() );
+//		Date endDate = null;
+//		try {
+//			endDate = format.parse("2019-05-04");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
+		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		CustomerBooking booking = new CustomerBooking("2019-05-01", endDate, customer1);
 		room101.addBooking(booking);
@@ -209,16 +216,19 @@ public class PropertyProperlyServiceApplicationTests {
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		String dateString = format.format( new Date() );
-		Date endDate1 = null;
-		Date endDate2 = null;
-		try {
-			endDate1 = format.parse("2019-05-04");
-			endDate2 = format.parse("2020-05-04");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////		String dateString = format.format( new Date() );
+//		Date endDate1 = null;
+//		Date endDate2 = null;
+//		try {
+//			endDate1 = format.parse("2019-05-04");
+//			endDate2 = format.parse("2020-05-04");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
+		LocalDate endDate1 = LocalDate.parse("2019-05-04");
+		LocalDate endDate2 = LocalDate.parse("2020-05-04");
 
 		CustomerBooking pastBooking = new CustomerBooking("2019-05-01", endDate1, customer1);
 		CustomerBooking futureBooking = new CustomerBooking("2020-05-01", endDate2, customer1);

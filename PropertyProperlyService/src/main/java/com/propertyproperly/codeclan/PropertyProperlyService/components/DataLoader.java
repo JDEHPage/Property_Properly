@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -71,13 +69,6 @@ public class DataLoader implements ApplicationRunner {
         BookableItem room102 = new BookableItem("Room 102", doubleRoom, 1, 50, guestHouse);
         bookableItemRepository.save(room102);
 
-
-//        guestHouse.addBookableItem(room101);
-//        guestHouse.addBookableItem(room102);
-//        bookableItemRepository.save(room101);
-//        bookableItemRepository.save(room102);
-//        propertyRepository.save(guestHouse);
-
         Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
         customerRepository.save(customer1);
 
@@ -87,12 +78,8 @@ public class DataLoader implements ApplicationRunner {
         Customer customer3 = new Customer("Sam Winsel", "London", "sammey@gmail.com");
         customerRepository.save(customer3);
 
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format( new Date() );
-//        Date startDate = format.parse("2019-05-01");
-        Date endDate1 = format.parse("2019-05-04");
-        Date endDate2 = format.parse("2019-06-04");
+        LocalDate endDate1 = LocalDate.parse("2019-05-04");
+        LocalDate endDate2 = LocalDate.parse("2019-06-04");
 
         CustomerBooking booking1 = new CustomerBooking("2019-05-01", endDate1, customer1);
         customerBookingRepository.save(booking1);
