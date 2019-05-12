@@ -11,11 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -112,32 +108,18 @@ public class PropertyProperlyServiceApplicationTests {
 	@Test
 	public void canCreateCustomerBooking() {
 		Property guest_house = new Property("Guest House");
-//		propertyRepository.save(guest_house);
 
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-//		bookableItemTypeRepository.save(singleRoom);
 
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
-//		bookableItemRepository.save(room101);
 
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
-//		customerRepository.save(customer1);
-
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////		String dateString = format.format( new Date() );
-//		Date endDate = null;
-//		try {
-//			endDate = format.parse("2019-05-04");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
 
 		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		CustomerBooking booking = new CustomerBooking("2019-05-01", endDate, customer1);
 		booking.addBookableItem(room101);
 		customer1.addBooking(booking);
-//		bookingRepository.save(booking);
 
 		assertEquals(1, customer1.getBookings().size());
 	}
@@ -145,27 +127,13 @@ public class PropertyProperlyServiceApplicationTests {
 	@Test
 	public void canCreateMaintenanceBooking(){
 		Property guest_house = new Property("Guest House");
-//		propertyRepository.save(guest_house);
 		BookableItemType singleRoom = new BookableItemType("Single Room");
-//		bookableItemTypeRepository.save(singleRoom);
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
-//		bookableItemRepository.save(room101);
-
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////		String dateString = format.format( new Date() );
-//		Date endDate = null;
-//		try {
-//			endDate = format.parse("2019-05-04");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
 
 		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		MaintenanceBooking booking2 = new MaintenanceBooking("2019-05-01", endDate, "painting");
 		room101.addBooking(booking2);
-//		booking2.addBookableItem(room101);
-//		bookingRepository.save(booking2);
 
 		assertEquals(1, room101.getBookings().size());
 	}
@@ -192,15 +160,6 @@ public class PropertyProperlyServiceApplicationTests {
 
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
 
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////		String dateString = format.format( new Date() );
-//		Date endDate = null;
-//		try {
-//			endDate = format.parse("2019-05-04");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-
 		LocalDate endDate = LocalDate.parse("2019-05-04");
 
 		CustomerBooking booking = new CustomerBooking("2019-05-01", endDate, customer1);
@@ -215,17 +174,6 @@ public class PropertyProperlyServiceApplicationTests {
 		BookableItemType singleRoom = new BookableItemType("Single Room");
 		BookableItem room101 = new BookableItem("Room 101", singleRoom, 1, 50, guest_house);
 		Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
-
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////		String dateString = format.format( new Date() );
-//		Date endDate1 = null;
-//		Date endDate2 = null;
-//		try {
-//			endDate1 = format.parse("2019-05-04");
-//			endDate2 = format.parse("2020-05-04");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
 
 		LocalDate endDate1 = LocalDate.parse("2019-05-04");
 		LocalDate endDate2 = LocalDate.parse("2020-05-04");

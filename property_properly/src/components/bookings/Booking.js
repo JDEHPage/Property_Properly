@@ -3,18 +3,15 @@ import Request from '../../helpers/request';
 
 const Booking = ( { booking } ) => {
 
-	const getEndDate = () => {
-		return booking.endDate.replace('00:00:00 BST', '');
-	}
-
-	const getStartDate = () => {
-		let date = new Date(booking.startDate);
-		return date.toDateString();
+	const getDateString = (dateToConvert) => {
+		let date = new Date(dateToConvert);
+		let options = {weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'};
+		return date.toLocaleDateString('en-GB', options);
 	}
 
 	const calculateNumNights = (booking) => {
 
-		const date2 = new Date(getEndDate());
+		const date2 = new Date(booking.endDate);
 		const date1 = new Date(booking.startDate);
 		const timeDiff = Math.abs(date2.getTime() - date1.getTime());
 		const dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -44,8 +41,8 @@ const Booking = ( { booking } ) => {
 	return (
 		<tr>
 		<td>{booking.id}</td>
-		<td>{getStartDate()}</td>
-		<td>{getEndDate()}</td>
+		<td>{getDateString(booking.startDate)}</td>
+		<td>{getDateString(booking.endDate)}</td>
 		<td>{calculateNumNights(booking)}</td>
 		<td>{booking.customer.name}</td>
 		<td>{allRoomsBooked}</td>

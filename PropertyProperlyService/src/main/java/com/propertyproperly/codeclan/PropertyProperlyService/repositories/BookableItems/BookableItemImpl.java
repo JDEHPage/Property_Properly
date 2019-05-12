@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
-//import java.util.Date;
 import java.util.List;
 
 public class BookableItemImpl implements BookableItemRepositoryCustom {
@@ -21,7 +20,6 @@ public class BookableItemImpl implements BookableItemRepositoryCustom {
     @Transactional
     public List<Booking> getBookingsNotInPast() {
         List<Booking> result = null;
-//        Date today = new Date();
         LocalDate today = LocalDate.now();
 
         Session session = entityManager.unwrap(Session.class);

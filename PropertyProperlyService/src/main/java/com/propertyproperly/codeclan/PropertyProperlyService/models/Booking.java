@@ -6,12 +6,10 @@ import com.propertyproperly.codeclan.PropertyProperlyService.converters.DateStri
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-//import java.util.Date;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-//@DiscriminatorColumn(name=“BOOK_TYPE”)
 @Table( name = "bookings" )
 public abstract class Booking {
 
@@ -28,7 +26,6 @@ public abstract class Booking {
 
     @JsonIgnoreProperties("bookings")
     @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "bookings_bookableItems",
             joinColumns = {@JoinColumn( name = "booking_id", updatable = false)},
