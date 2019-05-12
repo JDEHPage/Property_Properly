@@ -1,17 +1,10 @@
 import React from 'react';
-// import Request from '../../helpers/request';
 
 const Customer = ( props ) => {
 	const numBookings = props.customer.bookings.length;
 	const mobile = props.customer.mobileNumber || 'not supplied';
 
-	// const deleteCustomer = () => {
-	// 	const request = new Request();
-	// 	const url = `/api/customers/${customer.id}`
-	// 	request.delete(url).then(() => {
-	// 		window.location = "/customers"
-	// 	})
-	// }
+	const upcomingBookings = props.customer.bookingsNotInPast.length;
 
 	function deleteCustomer(){
 		props.handleDelete("customers", props.customer.id)
@@ -27,6 +20,7 @@ const Customer = ( props ) => {
 		</td>
 		<td>{mobile}</td>
 		<td>{numBookings}</td>
+		<td>{upcomingBookings}</td>
 		<td><button className="delete-btn" onClick={deleteCustomer}>Delete</button></td>
 		</tr>
 	);

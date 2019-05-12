@@ -23,7 +23,7 @@ const Customers = ( props ) => {
 			return <Customer key={index} customer={customer} handleDelete={props.handleDelete}/>
 		});
 		} else {
-			return <tr><td colSpan="7">No customers exist yet.</td></tr>
+			return <tr><td colSpan="8">No customers exist yet.</td></tr>
 		}
 	}
 
@@ -39,7 +39,8 @@ const Customers = ( props ) => {
 					<th>Address</th>
 					<th>Email</th>
 					<th>Telephone</th>
-					<th>Num. Bookings</th>
+					<th>Total Bookings</th>
+					<th>Upcoming Bookings</th>
 					<th></th>
 				</tr>
 			</thead>
