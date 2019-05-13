@@ -1,9 +1,7 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table( name = "maintenance_bookings")
@@ -13,7 +11,7 @@ public class MaintenanceBooking extends Booking {
     @Column( name = "type")
     private String type;
 
-    public MaintenanceBooking(String startDate, String endDate, String type) {
+    public MaintenanceBooking(String startDate, LocalDate endDate, String type) {
         super(startDate, endDate);
         this.type = type;
     }

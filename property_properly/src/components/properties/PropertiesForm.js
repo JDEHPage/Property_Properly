@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Request from "../../helpers/request"
 import './PropertiesForm.css'
 
-
 class PropertiesForm extends Component{
   constructor(props){
     super(props);
@@ -35,7 +34,7 @@ class PropertiesForm extends Component{
     render(){
       return(
         <React.Fragment>
-        <form className="property-form" onSubmit= {this.handleSubmit}>
+        <form onSubmit= {this.handleSubmit} className="property-form">
         <label htmlFor="name">Property Name </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
 

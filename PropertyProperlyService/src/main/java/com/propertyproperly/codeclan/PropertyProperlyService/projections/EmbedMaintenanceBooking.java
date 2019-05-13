@@ -4,6 +4,7 @@ import com.propertyproperly.codeclan.PropertyProperlyService.models.BookableItem
 import com.propertyproperly.codeclan.PropertyProperlyService.models.MaintenanceBooking;
 import org.springframework.data.rest.core.config.Projection;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Projection(name = "embedMaintenanceBooking", types = MaintenanceBooking.class)
@@ -11,7 +12,7 @@ public interface EmbedMaintenanceBooking {
 
     Long getId();
     String getStartDate();
-    String getEndDate();
+    LocalDate getEndDate();
     boolean isstatus();
     boolean isCheckinStatus();
     String getNotes();

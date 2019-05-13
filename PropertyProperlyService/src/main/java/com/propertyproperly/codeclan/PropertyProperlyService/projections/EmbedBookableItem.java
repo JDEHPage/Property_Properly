@@ -17,4 +17,5 @@ public interface EmbedBookableItem {
     List<Amenity> getAmenities();
     Property getProperty();
     List<Booking> getBookings();
+    List<Booking> getBookingsNotInPast();
 }

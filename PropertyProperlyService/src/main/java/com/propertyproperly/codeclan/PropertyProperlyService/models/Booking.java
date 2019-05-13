@@ -1,16 +1,15 @@
 package com.propertyproperly.codeclan.PropertyProperlyService.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cascade;
+import com.propertyproperly.codeclan.PropertyProperlyService.converters.DateStringConverter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-//@DiscriminatorColumn(name=“BOOK_TYPE”)
 @Table( name = "bookings" )
 public abstract class Booking {
 
@@ -21,12 +20,12 @@ public abstract class Booking {
     @Column(name = "start_date")
     private String startDate;
 
+    @Convert(converter = DateStringConverter.class)
     @Column(name = "end_date")
-    private String endDate;
+    private LocalDate endDate;
 
     @JsonIgnoreProperties("bookings")
     @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "bookings_bookableItems",
             joinColumns = {@JoinColumn( name = "booking_id", updatable = false)},
@@ -43,7 +42,7 @@ public abstract class Booking {
     @Column(name = "notes")
     private String notes;
 
-    public Booking(String startDate, String endDate) {
+    public Booking(String startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookableItems = new ArrayList<BookableItem>();
@@ -72,11 +71,11 @@ public abstract class Booking {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -3,6 +3,12 @@ import Request from '../../helpers/request';
 
 const Booking = ( { booking } ) => {
 
+	const getDateString = (dateToConvert) => {
+		let date = new Date(dateToConvert);
+		let options = {weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'};
+		return date.toLocaleDateString('en-GB', options);
+	}
+
 	const calculateNumNights = (booking) => {
 
 		const date2 = new Date(booking.endDate);
@@ -35,8 +41,8 @@ const Booking = ( { booking } ) => {
 	return (
 		<tr>
 		<td>{booking.id}</td>
-		<td>{booking.startDate}</td>
-		<td>{booking.endDate}</td>
+		<td>{getDateString(booking.startDate)}</td>
+		<td>{getDateString(booking.endDate)}</td>
 		<td>{calculateNumNights(booking)}</td>
 		<td>{booking.customer.name}</td>
 		<td>{allRoomsBooked}</td>

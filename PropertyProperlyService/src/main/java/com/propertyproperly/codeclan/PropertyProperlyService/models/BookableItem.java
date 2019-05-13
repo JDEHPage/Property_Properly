@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -164,6 +165,22 @@ public class BookableItem {
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+
+    public List<Booking> getBookingsNotInPast(){
+        ArrayList<Booking> result = new ArrayList<Booking>();
+        List<Booking> allBookings = bookings;
+
+        LocalDate today = LocalDate.now();
+
+        // filter all bookings for those with an endDate < today
+        for( Booking booking:allBookings ){
+
+            if( booking.getEndDate().compareTo( today ) >= 0 ){
+                result.add(booking);
+            }
+        }
+        return result;
     }
 
     public void setBookings(List<Booking> bookings) {

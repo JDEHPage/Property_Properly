@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -68,13 +69,6 @@ public class DataLoader implements ApplicationRunner {
         BookableItem room102 = new BookableItem("Room 102", doubleRoom, 1, 50, guestHouse);
         bookableItemRepository.save(room102);
 
-
-//        guestHouse.addBookableItem(room101);
-//        guestHouse.addBookableItem(room102);
-//        bookableItemRepository.save(room101);
-//        bookableItemRepository.save(room102);
-//        propertyRepository.save(guestHouse);
-
         Customer customer1 = new Customer("Joe Bloggs", "Glasgow", "jblogs@gmail.com");
         customerRepository.save(customer1);
 
@@ -84,34 +78,33 @@ public class DataLoader implements ApplicationRunner {
         Customer customer3 = new Customer("Sam Winsel", "London", "sammey@gmail.com");
         customerRepository.save(customer3);
 
+        LocalDate endDate1 = LocalDate.parse("2019-05-04");
+        LocalDate endDate2 = LocalDate.parse("2019-06-04");
+        LocalDate endDate3 = LocalDate.parse("2019-05-09");
 
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = format.format( new Date()   );
-//        Date startDate = format.parse("2019-05-01");
-//        Date endDate = format.parse("2019-05-04");
-
-        CustomerBooking booking1 = new CustomerBooking("2019-05-01", "2019-05-04", customer1);
+        CustomerBooking booking1 = new CustomerBooking("2019-05-01", endDate1, customer1);
         customerBookingRepository.save(booking1);
         booking1.addBookableItem(room101);
         customerBookingRepository.save(booking1);
 
-        CustomerBooking booking2 = new CustomerBooking("2019-05-01", "2019-05-04", customer2);
+        CustomerBooking booking2 = new CustomerBooking("2019-05-01", endDate1, customer2);
         customerBookingRepository.save(booking2);
         booking2.addBookableItem(room102);
         customerBookingRepository.save(booking2);
 
-        CustomerBooking booking3 = new CustomerBooking("2019-06-01", "2019-06-04", customer3);
+        CustomerBooking booking3 = new CustomerBooking("2019-06-01", endDate2, customer3);
         customerBookingRepository.save(booking3);
         booking3.addBookableItem(room101);
         booking3.addBookableItem(room102);
         customerBookingRepository.save(booking3);
 
-        CustomerBooking booking4 = new CustomerBooking("2019-05-07", "2019-05-09", customer1);
+
+        CustomerBooking booking4 = new CustomerBooking("2019-05-07", endDate3, customer1);
         customerBookingRepository.save(booking4);
         booking4.addBookableItem(room101);
         customerBookingRepository.save(booking4);
 
-        MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-20", "2019-05-21", "painting");
+        MaintenanceBooking maintenanceBooking = new MaintenanceBooking("2019-05-20", endDate2, "painting");
         maintenanceBookingRepository.save(maintenanceBooking);
         maintenanceBooking.addBookableItem(room102);
         maintenanceBookingRepository.save(maintenanceBooking);

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Request from "../../helpers/request"
 import './TypesForm.css'
 
-
 class TypesForm extends Component{
   constructor(props){
     super(props);
@@ -34,7 +33,7 @@ class TypesForm extends Component{
 
     render(){
       return(
-        <>
+        <React.Fragment>
         <form className="item-type-form" onSubmit= {this.handleSubmit}>
         <label htmlFor="name">Room Types </label>
         <input type = "text" id="name" name="name" onChange={this.handleChange}/>
@@ -44,7 +43,7 @@ class TypesForm extends Component{
         <ul className="types-list">
           {this.alltypes()}
         </ul>
-        </>
+        </React.Fragment>
       );
     }
   }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Request from "../../helpers/request"
 import './ItemsForm.css'
 
-
 class ItemsForm extends Component{
   constructor(props){
     super(props);
@@ -57,7 +56,7 @@ class ItemsForm extends Component{
 
     render(){
       return(
-        <>
+        <React.Fragment>
         <form className="item-type-form" onSubmit= {this.handleSubmit}>
 
         <label htmlFor="property">Associated Property</label>
@@ -88,7 +87,7 @@ class ItemsForm extends Component{
         <ul className="allitems-list">
           {this.allitems()}
         </ul>
-        </>
+        </React.Fragment>
       );
     }
   }
