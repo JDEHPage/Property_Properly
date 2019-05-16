@@ -1,4 +1,4 @@
-package com.propertyproperly.codeclan.PropertyProperlyService.Controllers;
+package com.propertyproperly.codeclan.PropertyProperlyService.controllers;
 
 import com.propertyproperly.codeclan.PropertyProperlyService.models.Customer;
 import com.propertyproperly.codeclan.PropertyProperlyService.repositories.Customer.CustomerRepository;
